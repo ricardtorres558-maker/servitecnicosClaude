@@ -39,36 +39,52 @@ create index if not exists productos_coleccion_idx on productos(coleccion_id);
 create index if not exists productos_marca_idx on productos(marca_id);
 
 -- Fecha de actualización automática
-create or replace function tocar_actualizado() returns trigger language plpgsql as $$
+create or replace function tocar_actualizado() returns trigger language plpgsql set search_path = '' as $$
 begin new.actualizado = now(); return new; end $$;
 drop trigger if exists productos_actualizado on productos;
 create trigger productos_actualizado before update on productos
   for each row execute function tocar_actualizado();
 
--- Seguridad: cualquiera puede VER lo visible; solo usuarios con sesión pueden EDITAR
+-- Administradores: solo los correos de esta lista pueden editar (no basta con crear una cuenta)
+create table if not exists administradores (
+  email text primary key
+);
+alter table administradores enable row level security;  -- sin políticas: nadie la lee desde la página
+
+create or replace function es_admin() returns boolean
+language sql stable security definer set search_path = '' as $$
+  select exists (
+    select 1 from public.administradores a
+    where lower(a.email) = lower(coalesce(auth.jwt() ->> 'email', ''))
+  );
+$$;
+revoke all on function es_admin() from public, anon;
+grant execute on function es_admin() to authenticated;
+
+-- Seguridad: cualquiera puede VER lo visible; solo administradores pueden EDITAR
 alter table colecciones enable row level security;
 alter table marcas      enable row level security;
 alter table productos   enable row level security;
 
 drop policy if exists "ver colecciones" on colecciones;
-create policy "ver colecciones" on colecciones for select using (visible);
+create policy "ver colecciones" on colecciones for select using (visible or (select es_admin()));
 drop policy if exists "ver marcas" on marcas;
 create policy "ver marcas" on marcas for select using (true);
 drop policy if exists "ver productos" on productos;
-create policy "ver productos" on productos for select using (visible);
+create policy "ver productos" on productos for select using (visible or (select es_admin()));
 
 drop policy if exists "editar colecciones" on colecciones;
-create policy "editar colecciones" on colecciones for all to authenticated using (true) with check (true);
+create policy "editar colecciones" on colecciones for all to authenticated using ((select es_admin())) with check ((select es_admin()));
 drop policy if exists "editar marcas" on marcas;
-create policy "editar marcas" on marcas for all to authenticated using (true) with check (true);
+create policy "editar marcas" on marcas for all to authenticated using ((select es_admin())) with check ((select es_admin()));
 drop policy if exists "editar productos" on productos;
-create policy "editar productos" on productos for all to authenticated using (true) with check (true);
+create policy "editar productos" on productos for all to authenticated using ((select es_admin())) with check ((select es_admin()));
 
--- Carpeta pública para las fotos de productos
+-- Carpeta pública para las fotos de productos (las fotos se ven por enlace directo; solo administradores suben o borran)
 insert into storage.buckets (id, name, public) values ('productos', 'productos', true)
   on conflict (id) do nothing;
 drop policy if exists "ver fotos" on storage.objects;
-create policy "ver fotos" on storage.objects for select using (bucket_id = 'productos');
 drop policy if exists "subir fotos" on storage.objects;
 create policy "subir fotos" on storage.objects for all to authenticated
-  using (bucket_id = 'productos') with check (bucket_id = 'productos');
+  using (bucket_id = 'productos' and (select public.es_admin()))
+  with check (bucket_id = 'productos' and (select public.es_admin()));
