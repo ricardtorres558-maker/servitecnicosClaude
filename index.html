@@ -152,10 +152,79 @@ section.block{padding-block:72px 24px}
 #cv2 .pc .stk{align-self:flex-start;font:600 12px var(--body);color:#0B7A43;background:#E6F6EE;border-radius:999px;padding:3px 10px}
 #cv2 .pc .stk.low{color:#8A5A00;background:#FFF4CC}
 #cv2 .pc .stk.out{color:#B4123F;background:#FDE7EF}
-#cv2 .pc a.cot{font-size:15px}
+#cv2 .pc .cot-v{margin-top:6px;text-align:center;background:var(--navy);color:#fff;border-radius:10px;padding:10px;font-weight:600;font-size:15px;transition:background .2s,color .2s}
+#cv2 .pc:hover .cot-v,#cv2 .pc:focus-visible .cot-v{background:var(--cyan);color:var(--navy)}
 #cv2 .brand img{mix-blend-mode:multiply}
 #cv2 .pc .ref{font-size:11px;color:var(--slate);text-align:center}
 #cv2 .none{grid-column:1/-1;margin:0;padding:28px;background:#fff;border:1.5px dashed var(--tint);border-radius:16px;color:var(--slate);text-align:center}
+#cv2 .pc{cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s}
+#cv2 .pc:hover,#cv2 .pc:focus-visible{border-color:var(--cyan);box-shadow:0 8px 24px rgba(15,23,42,.08);transform:translateY(-2px);outline:none}
+#pd{position:fixed;inset:0;z-index:90;background:var(--paper);overflow-y:auto;overscroll-behavior:contain}
+#pd[hidden]{display:none}
+#pd .cvh{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px max(16px,5vw);background:rgba(250,251,253,.94);backdrop-filter:blur(8px);border-bottom:1.5px solid var(--tint)}
+#pd .back{font:600 16px var(--body);color:var(--navy);background:#fff;border:1.5px solid var(--tint);border-radius:12px;padding:10px 16px;cursor:pointer}
+#pd .back:hover{border-color:var(--cyan)}
+#pd .cvlogo{display:flex;align-items:center;gap:10px;font:800 20px var(--display);letter-spacing:-.4px;color:var(--navy);text-decoration:none}
+#pd .cvlogo svg{height:34px;width:auto}#pd .cvlogo b{color:var(--cyan)}
+#pd .pdw{max-width:1180px;margin:0 auto;padding:24px max(16px,5vw) 72px}
+#pd .crumbs{font-size:14px;color:var(--slate);margin-bottom:20px}
+#pd .crumbs a{color:var(--slate);text-decoration:none}#pd .crumbs a:hover{color:var(--cyan)}
+#pd .pdtop{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+#pd .gmain{position:relative;aspect-ratio:1/1;background:#fff;border:1.5px solid var(--tint);border-radius:20px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+#pd .gmain img.ph{width:42%;opacity:.3;filter:grayscale(1);mix-blend-mode:multiply}
+#pd .gmain img.ft{width:100%;height:100%;object-fit:contain;cursor:zoom-in;transition:transform .25s}
+#pd .gmain.zoom img.ft{transform:scale(1.8);cursor:zoom-out}
+#pd .gmain em{font-style:normal;color:var(--slate);font-size:14px}
+#pd .gthumbs{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+#pd .gthumbs button{width:76px;height:76px;padding:0;background:#fff;border:2px solid var(--tint);border-radius:12px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;font:600 12px var(--body);color:var(--slate)}
+#pd .gthumbs button.on{border-color:var(--cyan)}
+#pd .gthumbs img{width:100%;height:100%;object-fit:contain}
+#pd .gthumbs img.ph{width:60%;height:auto;opacity:.3;filter:grayscale(1);mix-blend-mode:multiply}
+#pd .pinfo{display:flex;flex-direction:column;gap:12px}
+#pd .bt{font:600 13px var(--tech);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+#pd h2{margin:0;font:700 clamp(28px,3.4vw,40px)/1.15 var(--display);color:var(--navy)}
+#pd .ref{font-size:14px;color:var(--slate)}
+#pd .pr{font:700 clamp(30px,3.4vw,38px) var(--display);color:var(--navy);margin-top:6px}
+#pd .stk{align-self:flex-start;font:600 13px var(--body);color:#0B7A43;background:#E6F6EE;border-radius:999px;padding:4px 12px}
+#pd .stk.low{color:#8A5A00;background:#FFF4CC}#pd .stk.out{color:#B4123F;background:#FDE7EF}
+#pd .pdesc{margin:4px 0;color:var(--slate);font-size:17px;line-height:1.6}
+#pd .cta{align-self:stretch;text-align:center;background:var(--navy);color:#fff;border-radius:14px;padding:16px;font:700 17px var(--body);text-decoration:none}
+#pd .cta:hover{background:var(--cyan);color:var(--navy)}
+#pd .perks{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:6px;color:var(--slate);font-size:15px}
+#pd .perks li::before{content:"✓";color:var(--cyan);font-weight:700;margin-right:8px}
+#pd h3{margin:0 0 16px;font:700 24px var(--display);color:var(--navy)}
+#pd .specs,#pd .compat,#pd .rel{margin-top:48px}
+#pd dl{margin:0;display:grid;grid-template-columns:minmax(120px,220px) 1fr;background:#fff;border:1.5px solid var(--tint);border-radius:16px;overflow:hidden}
+#pd dt,#pd dd{margin:0;padding:14px 18px;border-bottom:1px solid var(--tint);font-size:15px}
+#pd dt{font-weight:600;color:var(--navy);background:#F5F8FC}
+#pd dd{color:var(--slate)}
+#pd dl > :nth-last-child(-n+2){border-bottom:0}
+#pd .compat ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+#pd .compat li{background:#fff;border:1.5px solid var(--tint);border-radius:999px;padding:8px 16px;font-size:15px;color:var(--navy)}
+#pd .rel .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+@media(max-width:600px){#pd .lg-only,#pd .cvlogo span,#cv2 .cvlogo span{display:none}}
+@media(max-width:820px){#pd .pdtop{grid-template-columns:1fr}#pd dl{grid-template-columns:1fr}#pd dt{border-bottom:0;padding-bottom:4px}#pd dd{padding-top:0}}
+#pd .pc{background:#fff;border:1.5px solid var(--tint);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+#pd .pc .ph{height:150px;background:var(--tint);display:flex;align-items:center;justify-content:center;color:var(--slate);font-size:14px}
+#pd .pc .pb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px}
+#pd .pc .bt{font:600 12px var(--tech);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+#pd .pc .nm{font:600 17px var(--body);color:var(--navy)}
+#pd .pc .pr{font:700 18px var(--display);color:var(--navy)}
+#pd .pc a{margin-top:6px;text-align:center;background:var(--navy);color:#fff;border-radius:10px;padding:10px;font-weight:600;text-decoration:none}
+#pd .pc a:hover{background:var(--cyan);color:var(--navy)}
+#pd .pc .ph{position:relative;flex-direction:column;gap:8px;background:#fff;border-bottom:1.5px solid var(--tint)}
+#pd .pc .ph img{width:46%;height:auto;opacity:.35;filter:grayscale(1);mix-blend-mode:multiply}
+#pd .pc .ph em{font-style:normal;font-size:12px;color:var(--slate)}
+#pd .pc .sz{font-size:14px;color:var(--navy)}
+#pd .pc .cp{font-size:13px;color:var(--slate);line-height:1.4}
+#pd .pc .cp b{font-weight:600;color:var(--navy)}
+#pd .pc .stk{align-self:flex-start;font:600 12px var(--body);color:#0B7A43;background:#E6F6EE;border-radius:999px;padding:3px 10px}
+#pd .pc .stk.low{color:#8A5A00;background:#FFF4CC}
+#pd .pc .stk.out{color:#B4123F;background:#FDE7EF}
+#pd .pc a.cot{font-size:15px}
+#pd .pc .ref{font-size:11px;color:var(--slate);text-align:center}
+#pd .pc{cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s}
+#pd .pc:hover,#pd .pc:focus-visible{border-color:var(--cyan);box-shadow:0 8px 24px rgba(15,23,42,.08);transform:translateY(-2px);outline:none}
 #cv2 .cvnote{margin:28px 0 0;color:var(--slate);font-size:14px}
 #cats{position:relative;height:100vh;height:100svh;background:var(--navy)}
 #cats .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
@@ -262,6 +331,28 @@ section[id],footer[id]{scroll-margin-top:64px}
 
 </main>
 
+<section id="pd" role="dialog" aria-modal="true" aria-labelledby="pdn" hidden>
+  <header class="cvh"><button type="button" class="back" id="pdback">← Volver<span class="lg-only"> al catálogo</span></button><a class="cvlogo" href="#" id="pdlogo" aria-label="Servitecnicos"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a></header>
+  <div class="pdw">
+    <nav class="crumbs" id="pdcrumbs" aria-label="Ruta"></nav>
+    <div class="pdtop">
+      <div class="gal"><div class="gmain" id="gmain"></div><div class="gthumbs" id="gthumbs" role="group" aria-label="Fotos del producto"></div></div>
+      <div class="pinfo">
+        <span class="bt" id="pdbt"></span>
+        <h2 id="pdn"></h2>
+        <span class="ref" id="pdref"></span>
+        <span class="pr" id="pdpr"></span>
+        <span id="pdstk"></span>
+        <p class="pdesc" id="pddesc"></p>
+        <a href="#" class="cta" id="pdcot">Cotizar por WhatsApp</a>
+        <ul class="perks"><li>Envíos en Bogotá</li><li>Asesoría para elegir el consumible correcto</li></ul>
+      </div>
+    </div>
+    <section class="specs" aria-labelledby="spt"><h3 id="spt">Características</h3><dl id="pdspecs"></dl></section>
+    <section class="compat" aria-labelledby="cpt"><h3 id="cpt">Compatibilidad</h3><ul id="pdcompat"></ul></section>
+    <section class="rel" aria-labelledby="rlt"><h3 id="rlt">Productos relacionados</h3><div class="pgrid" id="pdrel"></div></section>
+  </div>
+</section>
 <section id="cv2" role="dialog" aria-modal="true" aria-labelledby="cvt" hidden>
   <header class="cvh"><button type="button" class="back" id="cvback">← Volver</button><a class="cvlogo" href="#" id="cvlogo" aria-label="Servitecnicos"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a></header>
   <div class="cvw">
@@ -634,7 +725,7 @@ function renderCat(){
   var list=curBrand?inCat.filter(function(p){return p.b===curBrand;}):inCat,o='';
   list.forEach(function(p){
     var st=p.q>0?(p.q<=3?'<span class="stk low">Últimas '+p.q+' unidades</span>':'<span class="stk">Disponible · '+p.q+' und.</span>'):'<span class="stk out">Agotado</span>';
-    o+='<article class="pc"><div class="ph"><img src="media/brands/'+slug(p.b)+'.png" alt="" aria-hidden="true"><em>Foto pendiente</em></div><div class="pb"><span class="bt">'+esc(p.b)+' · '+esc(p.t)+'</span><span class="nm">'+esc(p.n)+'</span><span class="sz">'+esc(p.s)+'</span><span class="cp"><b>'+(p.col==='Impresoras'?'Consumibles:':'Compatible con:')+'</b> '+esc(p.col==='Impresoras'?p.cp.replace(/^Usa /,''):p.cp)+'</span><span class="pr">'+cop(p.p)+'</span>'+st+'<a href="#" class="cot">Cotizar por WhatsApp</a><span class="ref">Ref. '+esc(p.c)+'</span></div></article>';
+    o+='<article class="pc" data-c="'+esc(p.c)+'" tabindex="0" role="link" aria-label="Ver detalles de '+esc(p.n)+'"><div class="ph"><img src="media/brands/'+slug(p.b)+'.png" alt="" aria-hidden="true"><em>Foto pendiente</em></div><div class="pb"><span class="bt">'+esc(p.b)+' · '+esc(p.t)+'</span><span class="nm">'+esc(p.n)+'</span><span class="sz">'+esc(p.s)+'</span><span class="cp"><b>'+(p.col==='Impresoras'?'Consumibles:':'Compatible con:')+'</b> '+esc(p.col==='Impresoras'?p.cp.replace(/^Usa /,''):p.cp)+'</span><span class="pr">'+cop(p.p)+'</span>'+st+'<span class="cot-v">Ver detalles</span><span class="ref">Ref. '+esc(p.c)+'</span></div></article>';
   });
   if(!list.length)o='<p class="none">Aún no hay productos de '+esc(curBrand)+' en '+c.n.toLowerCase()+'. Pronto los agregaremos.</p>';
   pg.innerHTML=o;
@@ -644,11 +735,83 @@ function renderCat(){
 function openView(i){curCat=i;curBrand='';renderCat();lastFocus=document.activeElement;viewOpen=true;cv2.hidden=false;cv2.scrollTop=0;cv2.querySelector('.back').focus();}
 function closeView(){viewOpen=false;cv2.hidden=true;if(lastFocus&&lastFocus.focus)lastFocus.focus();}
 $('brands').addEventListener('click',function(e){var b=e.target.closest('.brand');if(!b)return;var v=b.getAttribute('data-b');curBrand=(curBrand===v)?'':v;renderCat();});
-$('pgrid').addEventListener('click',function(e){if(e.target.closest('.cot'))e.preventDefault();});
 $('cvback').addEventListener('click',closeView);
 $('cvlogo').addEventListener('click',function(e){e.preventDefault();closeView();});
-window.addEventListener('keydown',function(e){if(viewOpen&&e.key==='Escape')closeView();});
+window.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(pdOpen){closeProduct();}else if(viewOpen){closeView();}});
 Array.prototype.forEach.call(document.querySelectorAll('#cats .ver'),function(a){a.addEventListener('click',function(e){e.preventDefault();openView(+a.getAttribute('data-v'));});});
+
+
+/* Ficha de producto */
+var pd=$('pd'),pdOpen=false,pdLast=null,curProd=null;
+var WHATSAPP=''; /* número de WhatsApp de Servitecnicos, ej. '573001234567' */
+function toks(p){
+  var t=(p.n+' '+p.cp+' '+p.c).toUpperCase().replace(/\d+\s*ML/g,' ').replace(/\(([^)]*)\)/g,' $1 ');
+  var out={};t.split(/[^A-Z0-9\-]+/).forEach(function(w){w=w.replace(/-/g,'');if(w.length>=3&&/\d/.test(w))out[w]=1;});
+  return out;
+}
+function related(p){
+  var tp=toks(p);
+  return PRODUCTS.filter(function(q){return q.c!==p.c;}).map(function(q){
+    var tq=toks(q),sh=0;for(var k in tq){if(tp[k])sh++;}
+    var sc=sh*10+(q.b===p.b?3:0)+(q.col===p.col?2:0)+(q.col!==p.col&&sh?4:0);
+    return {q:q,sc:sc};
+  }).sort(function(a,b){return b.sc-a.sc;}).slice(0,4).map(function(x){return x.q;});
+}
+function stockHTML(p,big){
+  return p.q>0?(p.q<=3?'<span class="stk low">Últimas '+p.q+' unidades</span>':'<span class="stk">Disponible · '+p.q+' und.</span>'):'<span class="stk out">Agotado</span>';
+}
+function cardHTML(p){
+  return '<article class="pc" data-c="'+esc(p.c)+'" tabindex="0" role="link" aria-label="Ver detalles de '+esc(p.n)+'"><div class="ph">'+(p.f&&p.f.length?'<img src="'+esc(p.f[0])+'" alt="" style="width:100%;height:100%;object-fit:contain;opacity:1;filter:none">':'<img src="media/brands/'+slug(p.b)+'.png" alt="" aria-hidden="true"><em>Foto pendiente</em>')+'</div><div class="pb"><span class="bt">'+esc(p.b)+' · '+esc(p.t)+'</span><span class="nm">'+esc(p.n)+'</span><span class="sz">'+esc(p.s)+'</span><span class="pr">'+cop(p.p)+'</span>'+stockHTML(p)+'</div></article>';
+}
+function waLink(p){
+  var msg='Hola Servitecnicos, quiero cotizar: '+p.n+' (Ref. '+p.c+')';
+  return WHATSAPP?'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg):'#';
+}
+function showPhoto(i){
+  var p=curProd,g=$('gmain'),f=p.f||[];
+  g.classList.remove('zoom');
+  if(f.length){g.innerHTML='<img class="ft" src="'+esc(f[i])+'" alt="'+esc(p.n)+', foto '+(i+1)+'">';}
+  else{g.innerHTML='<img class="ph" src="media/brands/'+slug(p.b)+'.png" alt=""><em>Fotos del producto próximamente</em>';}
+  Array.prototype.forEach.call($('gthumbs').children,function(b,j){b.classList.toggle('on',j===i);b.setAttribute('aria-pressed',j===i);});
+}
+function openProduct(code){
+  var p=PRODUCTS.filter(function(x){return x.c===code;})[0];if(!p)return;
+  curProd=p;
+  if(!pdOpen){pdLast=document.activeElement;}
+  pdOpen=true;pd.hidden=false;pd.scrollTop=0;
+  $('pdcrumbs').innerHTML='<a href="#" id="crcat">'+esc(p.col)+'</a> / '+esc(p.b)+' / '+esc(p.c);
+  $('pdbt').textContent=p.b+' · '+p.t;
+  $('pdn').textContent=p.n;
+  $('pdref').textContent='Referencia: '+p.c;
+  $('pdpr').textContent=cop(p.p);
+  $('pdstk').innerHTML=stockHTML(p);
+  $('pddesc').textContent=p.d;
+  var cot=$('pdcot');cot.href=waLink(p);cot.target=WHATSAPP?'_blank':'';cot.rel='noopener';
+  var f=p.f||[],th='',n=Math.max(f.length,1);
+  for(var i=0;i<(f.length||3);i++){th+='<button type="button" data-i="'+i+'" aria-label="Foto '+(i+1)+'">'+(f.length?'<img src="'+esc(f[i])+'" alt="">':'<img class="ph" src="media/brands/'+slug(p.b)+'.png" alt="">')+'</button>';}
+  $('gthumbs').innerHTML=th;showPhoto(0);
+  var sp=[['Marca',p.b],['Colección',p.col],['Tipo',p.t],[p.col==='Impresoras'?'Funciones / velocidad':'Tamaño / rendimiento',p.s],['Referencia',p.c],['Disponibilidad',p.q>0?p.q+' unidades':'Agotado']];
+  $('pdspecs').innerHTML=sp.map(function(r){return '<dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd>';}).join('');
+  $('cpt').textContent=p.col==='Impresoras'?'Consumibles que usa':'Compatible con';
+  var items=(p.col==='Impresoras'?p.cp.replace(/^Usa /,''):p.cp).split(/\s*[,·]\s*|\s+y\s+/).filter(Boolean);
+  $('pdcompat').innerHTML=items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
+  $('pdrel').innerHTML=related(p).map(cardHTML).join('');
+  $('pdback').focus({preventScroll:true});
+}
+function closeProduct(){pdOpen=false;pd.hidden=true;if(pdLast&&pdLast.focus)pdLast.focus();}
+function cardActivate(e){
+  if(e.target.closest('.cot')){e.preventDefault();return;}
+  var c=e.target.closest('.pc');if(c)openProduct(c.getAttribute('data-c'));
+}
+$('pgrid').addEventListener('click',cardActivate);
+$('pdrel').addEventListener('click',cardActivate);
+[$('pgrid'),$('pdrel')].forEach(function(el){el.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('pc')){e.preventDefault();openProduct(e.target.getAttribute('data-c'));}});});
+$('gthumbs').addEventListener('click',function(e){var b=e.target.closest('button');if(b)showPhoto(+b.getAttribute('data-i'));});
+$('gmain').addEventListener('click',function(e){if(e.target.classList.contains('ft'))this.classList.toggle('zoom');});
+$('pdcot').addEventListener('click',function(e){if(!WHATSAPP){e.preventDefault();}});
+$('pdback').addEventListener('click',closeProduct);
+$('pdlogo').addEventListener('click',function(e){e.preventDefault();closeProduct();closeView();});
+$('pdcrumbs').addEventListener('click',function(e){if(e.target.id==='crcat'){e.preventDefault();closeProduct();}});
 
 function finish(){
   done=true;running=false;p=tp=1;render();H=window.innerHeight;W=window.innerWidth;intro.style.display='none';updCats();
