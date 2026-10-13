@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Servitecnicos: impresoras, tóners, tintas y repuestos con envíos en Bogotá.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%2220%2020%20972%20951%22%3E%3Cpath%20fill%3D%22%230049B0%22%20fill-rule%3D%22evenodd%22%20d%3D%22M21%20524%20L275%20772%20L371%20864%20L436%20807%20L471%20840%20L466%20846%20L360%20945%20L384%20969%20L496%20863%20L606%20970%20L631%20946%20L536%20856%20L521%20840%20L557%20807%20L618%20866%20L820%20684%20L982%20533%20L990%20524%20L940%20524%20L853%20605%20L823%20635%20L730%20717%20L619%20820%20L615%20818%20L582%20785%20L685%20692%20L736%20648%20L868%20525%20L818%20525%20L717%20619%20L669%20660%20L558%20762%20L527%20731%20L631%20638%20L754%20524%20L703%20524%20L502%20707%20L313%20524%20L311%20523%20L262%20523%20L476%20729%20L439%20761%20L437%20761%20L192%20523%20L143%20523%20L412%20784%20L375%20816%20L372%20817%20L71%20524ZM501%20753%20L533%20784%20L496%20818%20L462%20784ZM989%20473%20L642%20147%20L572%20212%20L531%20174%20L670%2045%20L645%2020%20L506%20151%20L469%20117%20L370%2021%20L345%2044%20L345%2046%20L481%20174%20L440%20211%20L374%20149%20L371%20150%20L21%20469%20L21%20470%20L72%20470%20L262%20299%20L374%20195%20L405%20223%20L415%20234%20L160%20470%20L212%20470%20L441%20257%20L475%20288%20L481%20295%20L425%20345%20L291%20469%20L341%20469%20L419%20397%20L446%20374%20L505%20318%20L507%20318%20L669%20471%20L671%20472%20L719%20472%20L531%20295%20L571%20258%20L573%20258%20L798%20473%20L849%20473%20L598%20235%20L606%20226%20L642%20193%20L739%20286%20L938%20473ZM507%20197%20L542%20229%20L547%20235%20L506%20272%20L474%20243%20L466%20234%20L501%20201Z%22/%3E%3C/svg%3E">
+<title>Servitecnicos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&family=Sora:wght@600;700;800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Concepto: plano técnico. El logo se desarma en líneas que dibujan el marco de la web y el menú. */
+:root{
+  --navy:#0F172A; --cyan:#00A8E8; --magenta:#E6007E; --yellow:#FFC400;
+  --paper:#FAFBFD; --cobalt:#0049B0; --ink:#2757A3; --slate:#475569; --muted:#6B7A93;
+  --rule:#E2E8F0; --white:#FFFFFF; --mist:#CBD5E1; --tint:#E8EDF5; --skel:#E3E7EE;
+  --tech:'Titillium Web',ui-sans-serif,system-ui,sans-serif;
+  --display:'Sora',ui-sans-serif,system-ui,sans-serif; --body:'Figtree',ui-sans-serif,system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;color-scheme:light}
+body{margin:0;background:var(--paper);color:var(--navy);font-family:var(--body);font-size:17px;line-height:1.55}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+/* ===== Escena de entrada ===== */
+#intro{position:fixed;inset:0;z-index:60}
+#menu,#content{display:none!important}
+#scene{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--paper)}
+html.locked,html.locked body{overflow:hidden;height:100%;overscroll-behavior:none}
+#scene > *{position:absolute}
+#content{background:radial-gradient(ellipse at 50% 50%,#F3F6FB 0%,var(--tint) 62%,#DFE6F1 100%);opacity:0;overflow:hidden;pointer-events:none}
+#content video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}
+#content video.on{opacity:1}
+#content .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,23,42,.62),rgba(15,23,42,.18) 60%,rgba(15,23,42,.05))}
+#sk{pointer-events:none}
+#sk i{position:absolute;display:block;background:var(--skel);border-radius:4px;opacity:0}
+#lines{inset:0;pointer-events:none}
+#lines i{position:absolute;display:block;background:var(--ink);opacity:0}
+#win{inset:0;z-index:4}
+#win > *{position:absolute}
+#fx{inset:0;width:100%;height:100%;pointer-events:none;z-index:3;transform-origin:50% 50%;will-change:transform,opacity}
+#win,#lines,#sk{display:none!important}
+
+#hdr > *{position:absolute;opacity:0}
+#mini{left:0;top:0;display:flex;align-items:center;justify-content:center}
+#mini svg{height:58%;width:auto;display:block}
+#hnav{top:0;height:100%;display:flex;align-items:center;gap:30px;font:400 15px/1 var(--tech);color:var(--muted)}
+#hnav a{padding:6px 0}
+#hnav a.on{color:var(--ink);border-bottom:2px solid var(--ink)}
+#hnav a:hover{color:var(--cyan)}
+#search{display:flex;align-items:stretch;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden;background:#fff;margin:0}
+#search input{flex:1;min-width:0;border:0;padding:0 18px;font:400 15px var(--tech);color:var(--navy);background:transparent;outline:none}
+#search input::placeholder{color:#9AA7BB}
+#search input:focus-visible{outline:none}
+#search:focus-within{box-shadow:0 0 0 3px rgba(0,168,232,.35)}
+#search button{width:56px;border:0;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+#search button:hover{background:var(--cyan)}
+#hright{top:0;height:100%;display:flex;align-items:center;gap:22px}
+#hright .lbl{font:600 12px/1 var(--tech);letter-spacing:.06em;color:var(--ink)}
+.ic{width:26px;height:26px;display:block;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.cartw{position:relative;display:flex}
+.badge{position:absolute;right:-7px;top:-7px;width:16px;height:16px;border-radius:50%;background:var(--ink);color:#fff;font:600 10px/16px var(--tech);text-align:center}
+#hright a{display:flex}
+#hright a:hover .ic{stroke:var(--cyan)}
+
+.narrow #hnav,.narrow #search,.narrow #hright .lbl,.narrow #hright a:nth-of-type(-n+2){display:none}
+.narrow #hright{gap:14px}
+.narrow #ftr .cell{font-size:13px}
+#scr > *{position:absolute;opacity:0}
+#scr .chev{left:50%;width:18px;height:18px;margin-left:-9px}
+#scr .up{top:16%}
+#scr .dn{top:78%}
+#scr .track{left:50%;width:8px;margin-left:-4px;top:26%;height:44%;background:#D6DCE7;border-radius:6px}
+#scr .thumb{position:absolute;left:0;right:0;top:64%;height:36%;background:var(--ink);border-radius:6px}
+#ftr > *{position:absolute;opacity:0}
+#ftr .cell{top:0;height:100%;display:flex;align-items:center;padding-left:34px;font:400 14px var(--tech);color:#8A97AB;white-space:nowrap;overflow:hidden}
+#ftr .srch{top:0;height:100%;display:flex;align-items:center;justify-content:center}
+
+#menu{display:flex;flex-direction:column;align-items:center;justify-content:center}
+#menu a{position:relative;display:block;font:400 var(--mf,72px)/1.1 var(--tech);color:rgba(255,255,255,.6);text-shadow:0 2px 14px rgba(15,23,42,.55);padding:0 2px 14px;opacity:0;transition:color .25s}
+#menu a.on{color:#fff}
+#menu a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;border-radius:2px;background:#fff;transform:scaleX(var(--u,0));transform-origin:center}
+#menu a:hover,#menu a:focus-visible{color:#fff}
+#menu a.on::after{background:var(--cyan)}
+
+#hint{left:0;right:0;bottom:3vh;z-index:5;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink);font:500 15px var(--body);pointer-events:none;text-align:center;padding-inline:16px}
+#hint svg{width:22px;height:38px;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.pill{font:600 14px var(--body);border:2px solid var(--ink);background:var(--paper);color:var(--ink);padding:8px 16px;border-radius:999px;cursor:pointer;min-height:40px}
+.pill:hover{background:var(--ink);color:#fff}
+#skip{position:absolute;right:16px;top:16px;z-index:6}
+
+#topbar{position:fixed;left:0;right:0;top:0;z-index:55;height:56px;background:#fff;border-bottom:1.5px solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:16px;padding-inline:16px;transform:translateY(-101%);transition:transform .3s ease}
+#topbar{display:none!important}
+#topbar.show{transform:none}
+#topbar nav{overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+@media(max-width:700px){#topbar nav{gap:14px;font-size:13px}#topbar .tl b,#topbar .tl{font-size:0}#topbar .tl svg{height:28px}}
+#topbar .tl{display:flex;align-items:center;gap:10px;font:800 20px var(--display);letter-spacing:-.4px;color:var(--navy)}
+#topbar .tl svg{height:30px;width:auto}
+#topbar .tl b{color:var(--cyan)}
+#topbar nav{display:flex;gap:22px;font:600 15px var(--body);color:var(--ink)}
+#topbar nav a:hover{color:var(--cyan)}
+@media (max-width:640px){#topbar nav a:nth-child(n+3){display:none}}
+
+/* ===== Resto de la página ===== */
+.wrap{max-width:1200px;margin:0 auto;padding-inline:24px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+h2{font-weight:700;font-size:clamp(26px,3.4vw,34px);letter-spacing:-.8px}
+.btn{display:inline-block;font-weight:700;font-size:17px;padding:15px 28px;border-radius:10px;background:var(--cyan);color:var(--navy)}
+.btn:hover{background:#33BBEF}
+section.block{padding-block:72px 24px}
+.sub{margin:8px 0 32px;color:var(--slate)}
+.cards{display:flex;flex-wrap:wrap;gap:20px}
+#cv2{position:fixed;inset:0;z-index:80;background:var(--paper);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+#cv2[hidden]{display:none}
+#cv2 .cvh{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px max(16px,5vw);background:rgba(250,251,253,.94);backdrop-filter:blur(8px);border-bottom:1.5px solid var(--tint)}
+#cv2 .back{font:600 16px var(--body);color:var(--navy);background:#fff;border:1.5px solid var(--tint);border-radius:12px;padding:10px 16px;cursor:pointer}
+#cv2 .back:hover{border-color:var(--cyan)}
+#cv2 .cvlogo{display:flex;align-items:center;gap:10px;font:800 20px var(--display);letter-spacing:-.4px;color:var(--navy);text-decoration:none}
+#cv2 .cvlogo svg{height:34px;width:auto}#cv2 .cvlogo b{color:var(--cyan)}
+#cv2 .cvw{max-width:1180px;margin:0 auto;padding:40px max(16px,5vw) 72px}
+#cv2 .cvk{margin:0;font:600 15px var(--tech);letter-spacing:.2em;text-transform:uppercase;color:var(--cyan)}
+#cv2 h2{font:700 clamp(36px,6vw,64px)/1.05 var(--display);margin:6px 0 10px;color:var(--navy)}
+#cv2 .cvs{margin:0 0 28px;color:var(--slate);font-size:18px}
+#cv2 .brands{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+#cv2 .brand{display:block;padding:0;background:#fff;border:2px solid var(--tint);border-radius:16px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s}
+#cv2 .brand img{display:block;width:100%;height:auto;aspect-ratio:262/226;object-fit:cover}
+#cv2 .brand:hover{border-color:var(--cyan);transform:translateY(-2px)}
+#cv2 .brand.on{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,168,232,.28)}
+#cv2 .cvbar{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:40px 0 16px}
+#cv2 .cvbar h3{margin:0;font:700 26px var(--display);color:var(--navy)}
+#cv2 .cvbar span{color:var(--slate);font-size:15px}
+#cv2 .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+#cv2 .pc{background:#fff;border:1.5px solid var(--tint);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+#cv2 .pc .ph{height:150px;background:var(--tint);display:flex;align-items:center;justify-content:center;color:var(--slate);font-size:14px}
+#cv2 .pc .pb{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px}
+#cv2 .pc .bt{font:600 12px var(--tech);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+#cv2 .pc .nm{font:600 17px var(--body);color:var(--navy)}
+#cv2 .pc .pr{font:700 18px var(--display);color:var(--navy)}
+#cv2 .pc a{margin-top:6px;text-align:center;background:var(--navy);color:#fff;border-radius:10px;padding:10px;font-weight:600;text-decoration:none}
+#cv2 .pc a:hover{background:var(--cyan);color:var(--navy)}
+#cv2 .brand{position:relative}
+#cv2 .brand .cnt{position:absolute;left:0;right:0;bottom:6px;text-align:center;font:600 11px var(--body);color:var(--slate)}
+#cv2 .brand.empty img{opacity:.45;filter:grayscale(1)}
+#cv2 .pc .ph{position:relative;flex-direction:column;gap:8px;background:#fff;border-bottom:1.5px solid var(--tint)}
+#cv2 .pc .ph img{width:46%;height:auto;opacity:.35;filter:grayscale(1);mix-blend-mode:multiply}
+#cv2 .pc .ph em{font-style:normal;font-size:12px;color:var(--slate)}
+#cv2 .pc .sz{font-size:14px;color:var(--navy)}
+#cv2 .pc .cp{font-size:13px;color:var(--slate);line-height:1.4}
+#cv2 .pc .cp b{font-weight:600;color:var(--navy)}
+#cv2 .pc .stk{align-self:flex-start;font:600 12px var(--body);color:#0B7A43;background:#E6F6EE;border-radius:999px;padding:3px 10px}
+#cv2 .pc .stk.low{color:#8A5A00;background:#FFF4CC}
+#cv2 .pc .stk.out{color:#B4123F;background:#FDE7EF}
+#cv2 .pc a.cot{font-size:15px}
+#cv2 .brand img{mix-blend-mode:multiply}
+#cv2 .pc .ref{font-size:11px;color:var(--slate);text-align:center}
+#cv2 .none{grid-column:1/-1;margin:0;padding:28px;background:#fff;border:1.5px dashed var(--tint);border-radius:16px;color:var(--slate);text-align:center}
+#cv2 .cvnote{margin:28px 0 0;color:var(--slate);font-size:14px}
+#cats{position:relative;height:100vh;height:100svh;background:var(--navy)}
+#cats .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+#cats video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#cats .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,23,42,.7),rgba(15,23,42,.1) 65%)}
+#cats .tx{position:absolute;z-index:2;left:max(16px,6vw);bottom:18vh;max-width:min(560px,calc(100vw - 32px));color:#fff;opacity:0;transform:translateY(16px);transition:opacity .45s,transform .45s;pointer-events:none}
+#cats .tx.on{opacity:1;transform:none;pointer-events:auto;transition-delay:.15s}
+#cats .no{font:600 15px var(--tech);letter-spacing:.2em;color:var(--cyan)}
+#cats h3{font:700 clamp(44px,9vw,120px)/1 var(--display);margin:8px 0 12px}
+#cats p{margin:0 0 20px;font-size:clamp(16px,2vw,20px);opacity:.92}
+#cats .tx a{display:inline-block;background:var(--cyan);color:var(--navy);font-weight:700;border-radius:12px;padding:12px 22px;text-decoration:none}
+#cats .ctabs{position:absolute;z-index:3;left:max(16px,6vw);right:max(16px,6vw);top:24px;display:flex;align-items:center;gap:clamp(14px,4vw,40px);flex-wrap:wrap;padding-bottom:12px}
+#cats .ctabs a.lg{margin-left:auto;display:flex;align-items:center;gap:10px;order:9;font:800 20px var(--display);letter-spacing:-.4px;color:#fff}
+#cats .ctabs a.lg svg{height:40px;width:auto;display:block}
+#cats .ctabs a.lg b{color:var(--cyan)}
+@media(max-width:700px){#cats .ctabs a.lg span{display:none}#cats .ctabs a.lg svg{height:34px}}
+#cats .ctabs a{font:400 clamp(18px,2.4vw,28px) var(--tech);color:rgba(255,255,255,.55);text-decoration:none;transition:color .25s}
+#cats .ctabs a.on{color:#fff}
+#cats .ctabs .bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.25)}
+#cats .ctabs .bar b{display:block;height:100%;width:100%;background:var(--cyan);transform-origin:left;transform:scaleX(.25);transition:transform .5s}
+.cat{flex:1 1 240px;min-width:0;background:var(--white);border:2px solid var(--rule);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.cat:hover{border-color:var(--cyan)}
+.cat i{display:block;width:44px;height:44px;border-radius:12px}
+.cat h3{font-size:22px;font-weight:700}
+.cat p{margin:0;font-size:15px;color:var(--slate)}
+.prod{flex:1 1 250px;min-width:0;background:var(--white);border:1px solid var(--rule);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.ph{height:180px;background:var(--rule);display:flex;align-items:center;justify-content:center;color:var(--slate);font-size:14px;font-weight:500}
+.pbody{padding:20px;display:flex;flex-direction:column;gap:10px}
+.kind{align-self:flex-start;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+.pbody h3{font-size:18px;line-height:1.3}
+.pbody .meta{font-size:14px;color:var(--slate)}
+.price{font-weight:700;font-size:20px}
+.btn.sm{font-size:16px;padding:12px;text-align:center;border-radius:8px;font-weight:600}
+.head-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:32px}
+.link-u{font-weight:600;border-bottom:3px solid var(--cyan);padding-bottom:2px}
+.cta{background:var(--magenta);color:var(--white);border-radius:24px;padding:48px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
+.cta div{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.cta h2{font-size:30px;letter-spacing:-.6px}
+.cta p{margin:0;font-size:18px}
+.btn.yel{background:var(--yellow);color:var(--navy)}
+.about{background:var(--white);border-block:1px solid var(--rule);padding-block:72px;margin-top:72px}
+.about p{margin:12px 0 0;max-width:62ch;color:var(--slate)}
+footer{background:var(--navy);color:var(--white)}
+footer .wrap{padding-block:56px 40px;display:flex;flex-wrap:wrap;gap:40px}
+footer .col{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:10px}
+footer .col h3{font-size:16px;color:var(--yellow)}
+footer .logo{font-family:var(--display);font-weight:800;font-size:24px}
+footer .logo b{color:var(--cyan)}
+footer p{margin:0;color:var(--mist);font-size:15px}
+.strip{display:flex;height:6px}.strip i{flex:1}
+section[id],footer[id]{scroll-margin-top:64px}
+@media (prefers-reduced-motion:reduce){#hint svg{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+
+<header id="topbar" aria-label="Menú principal">
+  <a class="tl" href="#" data-top="end"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg>Servi<b>técnicos</b></a>
+  <nav><a href="#" data-top="end">Inicio</a><a href="#impresoras" data-c="0">Impresoras</a><a href="#toners" data-c="1">Tóners</a><a href="#tintas" data-c="2">Tintas</a><a href="#repuestos" data-c="3">Repuestos</a></nav>
+</header>
+
+<main>
+<div id="intro">
+<div id="scene">
+  <div id="content"><video class="cv on" data-k="impresoras" src="media/impresoras.mp4" poster="media/impresoras.jpg" muted loop playsinline preload="auto" aria-hidden="true"></video><video class="cv" data-k="toners" src="media/toners.mp4" poster="media/toners.jpg" muted loop playsinline preload="auto" aria-hidden="true"></video><video class="cv" data-k="tintas" src="media/tintas.mp4" poster="media/tintas.jpg" muted loop playsinline preload="auto" aria-hidden="true"></video><video class="cv" data-k="repuestos" src="media/repuestos.mp4" poster="media/repuestos.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><i class="scrim"></i></div>
+  <div id="sk" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div id="lines" aria-hidden="true"></div>
+
+  <div id="win" inert>
+    <div id="hdr">
+      <a id="mini" href="#" data-top="end" aria-label="Servitecnicos, ir al inicio"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg></a>
+      <nav id="hnav" aria-label="Secciones"><a class="on" href="#" data-top="end">Inicio</a><a href="#catalogo">Catálogo</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></nav>
+      <form id="search" role="search"><input id="q" type="search" placeholder="Buscar tóner, tinta o modelo" aria-label="Buscar productos"><button type="submit" aria-label="Buscar"><svg class="ic" style="stroke:#fff;width:20px;height:20px" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg></button></form>
+      <div id="hright">
+        <span class="lbl">INGRESAR</span>
+        <a href="#contacto" aria-label="Mi cuenta"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5"/></svg></a>
+        <a href="#catalogo" aria-label="Productos"><svg class="ic" viewBox="0 0 24 24"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6.5a3 3 0 016 0V8"/></svg></a>
+        <a href="#contacto" class="cartw" aria-label="Carrito, 1 producto"><svg class="ic" viewBox="0 0 24 24"><path d="M3 4h3l2.4 11h9.6l2-8H7.2"/><circle cx="9.5" cy="19" r="1.2"/><circle cx="17" cy="19" r="1.2"/></svg><span class="badge">1</span></a>
+        <a href="#catalogo" aria-label="Menú"><svg class="ic" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></a>
+      </div>
+    </div>
+    <div id="scr" aria-hidden="true">
+      <svg class="ic chev up" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></svg>
+      <div class="track"><i class="thumb"></i></div>
+      <svg class="ic chev dn" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div id="ftr">
+      <div class="cell">Envíos en Bogotá</div>
+      <div class="cell">Cotiza por WhatsApp</div>
+      <div class="cell">Tóners, tintas y repuestos</div>
+      <div class="srch"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg></div>
+    </div>
+    <nav id="menu" aria-label="Categorías"><a href="#impresoras" data-k="impresoras" class="on">Impresoras</a><a href="#toners" data-k="toners">Tóners</a><a href="#tintas" data-k="tintas">Tintas</a><a href="#repuestos" data-k="repuestos">Repuestos</a></nav>
+  </div>
+
+  <svg id="fx" aria-hidden="true" focusable="false"><g id="g-static"><path id="p-static" fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></g><g id="g-segs" style="opacity:0"></g></svg>
+  <div id="hint"><svg viewBox="0 0 22 38" fill="none" stroke="#0049B0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l6-6 6 6"/><path d="M5 27l6 6 6-6"/></svg><span>Desliza hacia arriba o hacia abajo</span></div>
+  <button id="skip" class="pill" type="button">Saltar animación</button>
+</div>
+</div>
+
+<section id="cats" aria-label="Categorías"><div class="stick"><video id="cv" src="media/showcase2.mp4" poster="media/impresoras.jpg" muted playsinline preload="auto" aria-hidden="true"></video><i class="shade"></i><div class="tx on" data-i="0"><span class="no">01 / 04</span><h3>Impresoras</h3><p>Equipos láser y de inyección para casa y oficina.</p><a href="#" class="ver" data-v="0">Ver impresoras</a></div><div class="tx" data-i="1"><span class="no">02 / 04</span><h3>Tóners</h3><p>Para impresoras láser y fotocopiadoras.</p><a href="#" class="ver" data-v="1">Ver tóners</a></div><div class="tx" data-i="2"><span class="no">03 / 04</span><h3>Tintas</h3><p>Botellas y cartuchos para inyección de tinta.</p><a href="#" class="ver" data-v="2">Ver tintas</a></div><div class="tx" data-i="3"><span class="no">04 / 04</span><h3>Repuestos</h3><p>Piezas para mantener tus equipos al día.</p><a href="#" class="ver" data-v="3">Ver repuestos</a></div><nav class="ctabs"><a href="#impresoras" data-i="0" class="on">Impresoras</a><a href="#toners" data-i="1">Tóners</a><a href="#tintas" data-i="2">Tintas</a><a href="#repuestos" data-i="3">Repuestos</a><a class="lg" href="#" data-top="end" aria-label="Servitecnicos, ir al inicio"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#fff" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a><i class="bar"><b></b></i></nav></div></section>
+
+</main>
+
+<section id="cv2" role="dialog" aria-modal="true" aria-labelledby="cvt" hidden>
+  <header class="cvh"><button type="button" class="back" id="cvback">← Volver</button><a class="cvlogo" href="#" id="cvlogo" aria-label="Servitecnicos"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a></header>
+  <div class="cvw">
+    <p class="cvk">Catálogo</p><h2 id="cvt">Impresoras</h2>
+    <p class="cvs" id="cvs">Elige una marca para ver los equipos disponibles.</p>
+    <div class="brands" id="brands" role="group" aria-label="Marcas"></div>
+    <div class="cvbar"><h3 id="cvh">Todas las marcas</h3><span id="cvn"></span></div>
+    <div class="pgrid" id="pgrid"></div>
+    <p class="cvnote">Productos reales de muestra. Precios de referencia y cantidades de ejemplo: se reemplazarán con el inventario real de Servitecnicos.</p>
+  </div>
+</section>
+<script>
+(function(){
+'use strict';
+var POLY={"T1": [[42.8, 473.5], [374.3, 171.9], [696.8, 473.5]], "T3": [[310.3, 473.5], [642.1, 170.6], [963.9, 473.5]], "T2": [[182.0, 473.5], [658.6, 31.8]], "B1": [[44.1, 522.5], [373.3, 843.0], [733.4, 522.5]], "B3": [[286.4, 522.5], [618.9, 843.4], [968.6, 522.5]], "T4": [[355.8, 32.5], [825.7, 473.5]], "B2": [[166.0, 522.5], [618.4, 959.0]], "B4": [[368.9, 955.8], [847.0, 522.5]]};
+var LC=[505.7,495];
+var T_END=6.6;
+var COBALT=[0,73,176],INK=[39,87,163];
+var ROLE={T3_0:'dTL',T1_1:'dTR',B3_0:'dBL',B1_1:'dBR',T2_0:'lU',B2_0:'lD',T4_0:'rU',B4_0:'rD',T1_0:'sLU',B1_0:'sLD',T3_1:'sRU',B3_1:'sRD'};
+var ORDER=['dTL','dTR','dBL','dBR','lU','lD','rU','rD','sLU','sLD','sRU','sRD'];
+var NS='http://www.w3.org/2000/svg';
+var html=document.documentElement;
+function $(id){return document.getElementById(id);}
+var scene=$('scene'),intro=$('intro'),content=$('content'),sk=$('sk'),linesEl=$('lines'),win=$('win');
+var hdr=$('hdr'),mini=$('mini'),hnav=$('hnav'),search=$('search'),hright=$('hright');
+var scr=$('scr'),ftr=$('ftr'),menu=$('menu'),fx=$('fx'),gStatic=$('g-static'),gSegs=$('g-segs'),hint=$('hint'),skip=$('skip'),topbar=$('topbar');
+var menuLinks=Array.prototype.slice.call(menu.querySelectorAll('a'));
+var skels=Array.prototype.slice.call(sk.querySelectorAll('i'));
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function lerp(a,b,t){return a+(b-a)*t;}
+function sm(t){return t*t*(3-2*t);}
+function S(t,a,b){return sm(clamp((t-a)/(b-a),0,1));}
+function lp(a,b,k){return [lerp(a[0],b[0],k),lerp(a[1],b[1],k)];}
+function rgb(c){return 'rgb('+Math.round(c[0])+','+Math.round(c[1])+','+Math.round(c[2])+')';}
+function mixc(a,b,t){return [lerp(a[0],b[0],t),lerp(a[1],b[1],t),lerp(a[2],b[2],t)];}
+
+
+/* Segmentos del logo */
+var segs=[];
+Object.keys(POLY).forEach(function(k){
+  var P=POLY[k];
+  for(var i=0;i<P.length-1;i++){
+    var id=k+'_'+i,role=ROLE[id];
+    segs.push({id:id,role:role,idx:ORDER.indexOf(role),a0:P[i],b0:P[i+1],dia:role.charAt(0)==='d',el:null});
+  }
+});
+segs.forEach(function(s){
+  var l=document.createElementNS(NS,'line');
+  gSegs.appendChild(l);s.el=l;s.dl=0.035*s.idx;
+});
+
+/* Líneas del marco */
+var LN={};
+['top','bot','left','right','hdr','logo','scrl','ftr','f1','f2','f3','f4'].forEach(function(k){
+  var i=document.createElement('i');linesEl.appendChild(i);LN[k]=i;
+});
+
+var W=0,H=0,u=1,s0=1,cx=0,cy=0,narrow=false;
+var fx0,fx1,fy0,fy1,fyh,fyf,fxr,hdrH,logoW;
+var p=0,tp=0,running=false,last=0,done=false;
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function box(el,x,y,w,h){el.style.left=x+'px';el.style.top=y+'px';el.style.width=w+'px';el.style.height=h+'px';}
+function A(x,y){return [cx+x*u,cy+y*u];}
+function extend(a,b,e){var dx=b[0]-a[0],dy=b[1]-a[1],L=Math.hypot(dx,dy);dx/=L;dy/=L;return [[a[0]-dx*e,a[1]-dy*e],[b[0]+dx*e,b[1]+dy*e]];}
+function setLine(el,x,y,w,h,horiz){el.style.left=x+'px';el.style.top=y+'px';el.style.width=w+'px';el.style.height=h+'px';el._h=horiz;}
+
+function layout(){
+  W=scene.clientWidth;H=scene.clientHeight;
+  narrow=W<760;
+  scene.classList.toggle('narrow',narrow);
+  u=Math.min(H,W*0.56);cx=W/2;cy=H/2;
+  s0=Math.min(0.76*H/950,0.7*W/970);
+  gStatic.setAttribute('data-s','1');
+  if(!narrow){
+    fx0=0.073*W;fx1=0.926*W;fy0=0.076*H;fy1=0.926*H;hdrH=0.0926*H;
+    var ftrH=0.0676*H;fyh=fy0+hdrH;fyf=fy1-ftrH;fxr=fx1-0.0422*W;logoW=0.1*W;
+  }else{
+    fx0=12;fx1=W-12;fy0=12;fy1=H-12;hdrH=60;
+    fyh=fy0+hdrH;fyf=fy1-44;fxr=fx1;logoW=64;
+  }
+  var ox=narrow?10:0.027*W,oy=narrow?10:0.0528*H,lw=1.5;
+  setLine(LN.top,fx0-ox,fy0-lw/2,fx1-fx0+2*ox,lw,true);
+  setLine(LN.bot,fx0-ox,fy1-lw/2,fx1-fx0+2*ox,lw,true);
+  setLine(LN.left,fx0-lw/2,fy0-oy,lw,fy1-fy0+2*oy,false);
+  setLine(LN.right,fx1-lw/2,fy0-oy,lw,fy1-fy0+2*oy,false);
+  setLine(LN.hdr,fx0,fyh-lw/2,fx1-fx0,lw,true);
+  setLine(LN.ftr,fx0,fyf-lw/2,fx1-fx0,lw,true);
+  setLine(LN.logo,fx0+logoW-lw/2,fy0,lw,hdrH,false);
+  setLine(LN.scrl,fxr-lw/2,fyh,lw,fyf-fyh,false);
+  var fw=fx1-fx0;
+  var fxs=narrow?[]:[0.1724*W,0.3844*W,0.599*W];
+  ['f1','f2','f3'].forEach(function(k,i){
+    if(narrow||fxs[i]===undefined){setLine(LN[k],0,0,0,0,false);return;}
+    setLine(LN[k],fx0+(fxs[i]-fx0)-lw/2+ (fx0-0.073*W)*0,fyf,lw,fy1-fyf,false);
+  });
+  /* corrige posiciones x de los divisores del pie (relativas al ancho de pantalla) */
+  if(!narrow){
+    setLine(LN.f1,0.1724*W-lw/2,fyf,lw,fy1-fyf,false);
+    setLine(LN.f2,0.3844*W-lw/2,fyf,lw,fy1-fyf,false);
+    setLine(LN.f3,0.599*W-lw/2,fyf,lw,fy1-fyf,false);
+    setLine(LN.f4,fxr-lw/2,fyf,lw,fy1-fyf,false);
+  }else{setLine(LN.f4,0,0,0,0,false);}
+
+  box(content,fx0,fyh,fxr-fx0,fyf-fyh);
+  box(sk,fx0,fyh,fxr-fx0,fyf-fyh);
+  var cw=fxr-fx0,ch=fyf-fyh;
+  var skd=[[0.05,0.10,0.095,0.016],[0.05,0.133,0.077,0.013],[0.05,0.16,0.054,0.013],[0.05,0.34,0.05,0.035],[0.70,0.37,0.045,0.012],[0.705,0.40,0.022,0.012]];
+  skels.forEach(function(el,i){
+    if(narrow){el.style.display='none';return;}
+    el.style.display='block';
+    var d=skd[i];el.style.left=(d[0]*cw)+'px';el.style.top=(d[1]*ch)+'px';el.style.width=(d[2]*cw)+'px';el.style.height=(d[3]*ch)+'px';
+  });
+
+  box(hdr,fx0,fy0,fx1-fx0,hdrH);
+  box(mini,0,0,logoW,hdrH);
+  hnav.style.left=(logoW+(narrow?0:0.018*W))+'px';
+  var sh=0.47*hdrH;
+  search.style.left=(0.361*fw)+'px';search.style.width=(0.305*fw)+'px';search.style.height=sh+'px';search.style.top=((hdrH-sh)/2)+'px';
+  hright.style.right=(narrow?10:0.02*fw)+'px';
+  box(scr,fxr,fyh,fx1-fxr,fyf-fyh);
+  scr.style.display=narrow?'none':'block';
+  box(ftr,fx0,fyf,fx1-fx0,fy1-fyf);
+  var cells=ftr.children;
+  if(!narrow){
+    var xs=[0.1724*W-fx0,0.3844*W-fx0,0.599*W-fx0,fxr-fx0];
+    cells[0].style.display='flex';cells[1].style.display='flex';cells[2].style.display='flex';
+    cells[0].style.left=xs[0]+'px';cells[0].style.width=(xs[1]-xs[0])+'px';
+    cells[1].style.left=xs[1]+'px';cells[1].style.width=(xs[2]-xs[1])+'px';
+    cells[2].style.left=xs[2]+'px';cells[2].style.width=(xs[3]-xs[2])+'px';
+    cells[3].style.left=xs[3]+'px';cells[3].style.width=(fx1-fxr)+'px';cells[3].style.display='flex';
+  }else{
+    cells[0].style.display='flex';cells[0].style.left='0px';cells[0].style.width=(fx1-fx0)+'px';cells[0].style.paddingLeft='16px';
+    cells[1].style.display='none';cells[2].style.display='none';cells[3].style.display='none';
+  }
+  var mf=narrow?38:Math.min(84,Math.round(0.067*H));
+  menu.style.setProperty('--mf',mf+'px');
+  var itemH=mf*1.1+14+5;
+  menu.style.gap=Math.max(14,Math.round((narrow?0.095:0.141)*H-itemH))+'px';
+  box(menu,fx0,fyh,fxr-fx0,fyf-fyh);
+
+  /* destinos de los segmentos */
+  var Rd=0.37,l=0.045;
+  var d1=0.40*u,d2=0.15*u,ex=0.1*u;
+  var yT=fyh+0.022*H,yB=fyf-0.022*H,lp2=0.045*u;
+  var T1={
+    dTL:[A(-Rd,0),A(0,-Rd)],dTR:[A(0,-Rd),A(Rd,0)],dBL:[A(-Rd,0),A(0,Rd)],dBR:[A(0,Rd),A(Rd,0)],
+    lU:[A(-0.728,0),A(-0.2,-0.476)],lD:[A(-0.728,0),A(-0.2,0.476)],
+    sLU:[A(-0.685,-0.194),A(-0.37,-0.476)],sLD:[A(-0.685,0.194),A(-0.37,0.476)],
+    rU:[A(0.2,-0.476),A(0.728,0)],rD:[A(0.2,0.476),A(0.728,0)],
+    sRU:[A(0.37,-0.476),A(0.685,-0.194)],sRD:[A(0.37,0.476),A(0.685,0.194)]
+  };
+  var T2={
+    lU:extend([0,d1],[d1,0],ex),sLU:extend([0,d2],[d2,0],ex),
+    lD:extend([0,H-d1],[d1,H],ex),sLD:extend([0,H-d2],[d2,H],ex),
+    rU:extend([W-d1,0],[W,d1],ex),sRU:extend([W-d2,0],[W,d2],ex),
+    rD:extend([W-d1,H],[W,H-d1],ex),sRD:extend([W-d2,H],[W,H-d2],ex)
+  };
+  var TA={
+    dTL:[A(-l,-Rd+l),A(0,-Rd)],dTR:[A(0,-Rd),A(l,-Rd+l)],dBL:[A(-l,Rd-l),A(0,Rd)],dBR:[A(0,Rd),A(l,Rd-l)]
+  };
+  var T3={
+    dTL:[[cx-lp2,yT+lp2],[cx,yT]],dTR:[[cx,yT],[cx+lp2,yT+lp2]],dBL:[[cx-lp2,yB-lp2],[cx,yB]],dBR:[[cx,yB],[cx+lp2,yB-lp2]]
+  };
+  segs.forEach(function(s){s.p1=T1[s.role];s.p2=T2[s.role];s.pA=TA[s.role];s.p3=T3[s.role];});
+}
+
+function render(){
+  var t=p*T_END;
+  /* --- logo y segmentos --- */
+  var sc=s0*(1+0.1*(1-S(t,0,1.0)));
+  var SW=35.2*sc;
+  gStatic.setAttribute('transform','translate('+(cx-LC[0]*sc)+','+(cy-LC[1]*sc)+') scale('+sc+')');
+  var sp=1-clamp(t/0.1,0,1);
+  gStatic.style.opacity=sp;gSegs.style.opacity=1-sp;
+  var sw1=0.016*u,swD=0.0045*u,swA=0.0065*u;
+  segs.forEach(function(s){
+    var t2=t-s.dl;
+    var a0=[cx+(s.a0[0]-LC[0])*sc,cy+(s.a0[1]-LC[1])*sc],b0=[cx+(s.b0[0]-LC[0])*sc,cy+(s.b0[1]-LC[1])*sc];
+    var a,b,w,op,col,cap='butt',e1=S(t2,1.0,2.6);
+    if(!s.dia){
+      var e2=S(t2,2.8,3.9);
+      a=lp(lp(a0,s.p1[0],e1),s.p2[0],e2);b=lp(lp(b0,s.p1[1],e1),s.p2[1],e2);
+      w=lerp(lerp(SW,sw1,e1),sw1*1.15,e2);
+      op=1-0.62*S(t,3.6,4.6)-0.38*S(t,4.6,5.6);
+      col=rgb(COBALT);
+    }else{
+      var ew=S(t2,1.0,2.3),eA=S(t2,4.0,4.6),e3=S(t2,4.6,5.2);
+      a=lp(lp(lp(a0,s.p1[0],e1),s.pA[0],eA),s.p3[0],e3);
+      b=lp(lp(lp(b0,s.p1[1],e1),s.pA[1],eA),s.p3[1],e3);
+      w=lerp(lerp(lerp(SW,swD,ew),swA,eA),swA,e3);
+      op=1-S(t,5.2,5.7);
+      col=rgb(mixc(COBALT,INK,S(t,1.6,2.6)));
+      if(t>1.2)cap='square';
+    }
+    var l=s.el;
+    l.setAttribute('x1',a[0]);l.setAttribute('y1',a[1]);l.setAttribute('x2',b[0]);l.setAttribute('y2',b[1]);
+    l.setAttribute('stroke',col);l.setAttribute('stroke-width',w);l.setAttribute('stroke-linecap',cap);
+    l.style.opacity=op;
+  });
+
+  /* --- marco --- */
+  function ln(el,k,v){var s=sm(clamp(v,0,1));el.style.opacity=s>0.001?1:0;el.style.transform=el._h?'scaleX('+s+')':'scaleY('+s+')';}
+  ln(LN.top,0,S(t,3.0,4.0));ln(LN.bot,0,S(t,3.1,4.1));ln(LN.left,0,S(t,3.2,4.2));ln(LN.right,0,S(t,3.3,4.3));
+  ln(LN.hdr,0,S(t,3.6,4.4));ln(LN.logo,0,S(t,3.8,4.5));ln(LN.ftr,0,S(t,3.6,4.4));
+  ln(LN.f1,0,S(t,4.0,4.6));ln(LN.f2,0,S(t,4.1,4.7));ln(LN.f3,0,S(t,4.2,4.8));ln(LN.f4,0,S(t,4.3,4.9));
+  ln(LN.scrl,0,S(t,4.0,4.8));
+  mini.style.opacity=S(t,3.0,3.8);
+  hnav.style.opacity=S(t,4.0,4.6);
+  search.style.opacity=S(t,4.2,4.8);
+  hright.style.opacity=S(t,4.4,5.0);
+  scr.children[0].style.opacity=S(t,4.4,5.0);scr.children[1].style.opacity=S(t,4.5,5.1);scr.children[2].style.opacity=S(t,4.4,5.0);
+  var fo=S(t,4.2,4.9);
+  for(var i=0;i<ftr.children.length;i++){ftr.children[i].style.opacity=fo;}
+  var sko=S(t,3.4,4.2)*(1-S(t,5.2,6.0));
+  skels.forEach(function(el){el.style.opacity=sko;});
+
+  /* --- menú --- */
+  menuLinks.forEach(function(a,i){
+    var o=S(t,4.9+0.3*i,5.5+0.3*i);
+    a.style.opacity=o;
+    a.style.transform='translateY('+((1-o)*0.04*H)+'px)';
+    a.style.filter=o<0.99?'blur('+((1-o)*6)+'px)':'none';
+    a.style.setProperty('--u',S(t,6.0+0.2*i,6.6+0.2*i));
+  });
+  /* transición: el logo abierto se acerca a la cámara y deja ver el menú de video */
+  var z=S(t,3.6,6.4);
+  fx.style.transform='scale('+(1+7*z*z).toFixed(3)+')';
+  fx.style.opacity=(1-S(t,5.0,6.3)).toFixed(3);
+  scene.style.backgroundColor='rgba(250,251,253,'+(1-S(t,4.0,6.0)).toFixed(3)+')';
+
+  hint.style.opacity=1-S(t,0,0.4);
+  var ready=p>0.9;
+  win.inert=!ready;
+  skip.hidden=done||p>0.9;
+}
+
+function updateTop(){topbar.classList.toggle('show',done);}
+function tick(tm){
+  var dt=Math.min(0.05,((tm-last)/1000)||0.016);last=tm;
+  var d=tp-p;
+  if(reduce||Math.abs(d)<0.0003){p=tp;}else{p+=d*(1-Math.exp(-dt*10));}
+  render();
+  if(!done&&p>=0.9995&&tp>=1){finish();return;}
+  if(p!==tp){requestAnimationFrame(tick);}else{running=false;}
+}
+function kick(){if(!running){running=true;last=performance.now();requestAnimationFrame(tick);}}
+function push(v){if(done)return;tp=clamp(tp+v,0,1);kick();}
+
+/* Videos del menú */
+var cvs=Array.prototype.slice.call(content.querySelectorAll('video')),cur=-1,userUsed=false,cyc=null;
+function setCat(i){
+  if(i===cur)return;cur=i;
+  cvs.forEach(function(v,j){v.classList.toggle('on',j===i);if(j===i){try{v.currentTime=0;var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});}catch(e){}}else{try{v.pause();}catch(e){}}});
+  menuLinks.forEach(function(a,j){a.classList.toggle('on',j===i);});
+}
+menuLinks.forEach(function(a,i){
+  a.addEventListener('mouseenter',function(){userUsed=true;setCat(i);});
+  a.addEventListener('focus',function(){userUsed=true;setCat(i);});
+  a.addEventListener('touchstart',function(){userUsed=true;setCat(i);},{passive:true});
+});
+function startCycle(){if(cyc)return;cyc=setInterval(function(){if(userUsed||document.hidden)return;setCat((cur+1)%cvs.length);},3200);}
+
+
+/* Categorías: cada paso de scroll = un salto de cámara del video */
+var cats=$('cats'),cv=$('cv'),txs=Array.prototype.slice.call(cats.querySelectorAll('.tx')),ctabs=Array.prototype.slice.call(cats.querySelectorAll('.ctabs a[data-i]')),cbar=cats.querySelector('.bar b');
+/* Línea de tiempo del video: por categoría [ida lenta][vuelta lenta][ida lenta] + corte de cámara */
+var SEG=[{"s": 0, "L": 3.7917}, {"s": 11.875, "L": 3.75}, {"s": 23.625, "L": 4.5}, {"s": 37.625, "L": 4.8333}];
+var shown=0,target=0,moving=false,inView=false,fast=false,moveT=0;
+function showUI(i){txs.forEach(function(x,j){x.classList.toggle('on',j===i);});ctabs.forEach(function(a,j){a.classList.toggle('on',j===i);});cbar.style.transform='scaleX('+((i+1)/4)+')';}
+function seek(t){try{cv.currentTime=t;}catch(e){}}
+function rate(r){try{if(cv.playbackRate!==r)cv.playbackRate=r;}catch(e){}}
+function playV(){var pr=cv.play();if(pr&&pr.catch)pr.catch(function(){});}
+function exitFrom(k){ /* salta al mismo cuadro en la tercera parte y acelera hasta el corte */
+  var g=SEG[k],x=cv.currentTime-g.s,pos=x<g.L?x:(x<2*g.L?2*g.L-x:x-2*g.L);
+  pos=clamp(pos,0,g.L);seek(g.s+2*g.L+pos);rate(4);playV();
+}
+function step(){
+  if(shown===target){moving=false;return;}
+  if(target>shown){
+    moving=true;moveT=performance.now();txs.forEach(function(x){x.classList.remove('on');});
+    exitFrom(shown);
+  }else{
+    shown=target;moving=false;rate(1);cv.style.transition='filter .12s';cv.style.filter='blur(14px)';
+    setTimeout(function(){seek(SEG[shown].s);cv.style.filter='none';showUI(shown);},130);
+  }
+}
+function setTarget(i){i=clamp(i,0,3);if(i===target)return;target=i;if(!moving||target<shown)step();}
+var rafId=0;
+function loop(){
+  rafId=requestAnimationFrame(loop);
+  if(!inView)return;
+  var t=cv.currentTime,g=SEG[shown];
+  if(moving&&target>shown){
+    if(performance.now()-moveT>4000){ /* respaldo si el video no avanza */
+      shown=target;moving=false;rate(1);seek(SEG[shown].s);showUI(shown);return;}
+    if(t>=g.s+3*g.L-0.02)rate(1); /* el corte de cámara a velocidad normal */
+    var nx=SEG[shown+1];
+    if(t>=nx.s){
+      shown++;showUI(shown);
+      if(shown<target){moveT=performance.now();exitFrom(shown);}else{moving=false;rate(1);}
+    }
+    return;
+  }
+  rate(1);
+  if(t>=g.s+2*g.L-0.03||t<g.s-0.1)seek(g.s);
+  if(cv.paused)playV();
+}
+var lockUntil=0,acc=0,accT=0;
+function updCats(){inView=true;}
+function nav(d){
+  var now=performance.now();if(now<lockUntil)return;
+  var i=clamp(target+d,0,3);if(i===target)return;
+  lockUntil=now+(d>0?1500:700);
+  setTarget(i);
+}
+function goCat(i){
+  i=clamp(i,0,3);
+  if(i===shown&&!moving)return;
+  if(i===shown+1&&!moving){lockUntil=performance.now()+1500;setTarget(i);return;}
+  moving=false;target=shown=i;lockUntil=performance.now()+700;
+  cv.style.transition='filter .12s';cv.style.filter='blur(14px)';
+  txs.forEach(function(x){x.classList.remove('on');});
+  setTimeout(function(){rate(1);seek(SEG[i].s);playV();cv.style.filter='none';showUI(i);},110);
+}
+window.addEventListener('wheel',function(e){
+  if(!done||viewOpen)return;e.preventDefault();
+  var now=performance.now();if(now-accT>200)acc=0;accT=now;
+  acc+=e.deltaY;
+  if(Math.abs(acc)>=30){var d=acc>0?1:-1;acc=0;nav(d);}
+},{passive:false});
+var ty0=null;
+window.addEventListener('touchstart',function(e){ty0=e.touches[0].clientY;},{passive:true});
+window.addEventListener('touchmove',function(e){
+  if(!done||viewOpen)return;e.preventDefault();
+  if(ty0===null)return;var dy=ty0-e.touches[0].clientY;
+  if(Math.abs(dy)>40){ty0=e.touches[0].clientY;nav(dy>0?1:-1);}
+},{passive:false});
+window.addEventListener('keydown',function(e){
+  if(!done||viewOpen)return;var k=e.key;
+  if(k==='ArrowDown'||k==='PageDown'||k===' '){e.preventDefault();nav(1);}
+  else if(k==='ArrowUp'||k==='PageUp'){e.preventDefault();nav(-1);}
+  else if(k==='Home'){e.preventDefault();goCat(0);}
+  else if(k==='End'){e.preventDefault();goCat(3);}
+});
+ctabs.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();goCat(+a.getAttribute('data-i'));});});
+Array.prototype.forEach.call(document.querySelectorAll('[data-c]'),function(a){a.addEventListener('click',function(e){e.preventDefault();goCat(+a.getAttribute('data-c'));});});
+menuLinks.forEach(function(a,i){a.addEventListener('click',function(e){e.preventDefault();goCat(i);});});
+window.addEventListener('resize',function(){if(done)updCats();});
+seek(SEG[0].s);loop();
+
+
+/* Catálogo por categoría */
+var cv2=$('cv2'),viewOpen=false,lastFocus=null,curCat=0,curBrand='';
+var CATS=[{n:'Impresoras',s:'Elige una marca para ver los equipos disponibles.',t:['Láser','Inyección de tinta','Multifuncional']},{n:'Tóners',s:'Elige la marca de tu impresora para encontrar su tóner.',t:['Original','Compatible','Alto rendimiento']},{n:'Tintas',s:'Elige la marca de tu impresora para encontrar sus tintas.',t:['Botella','Cartucho','Kit de colores']},{n:'Repuestos',s:'Elige la marca de tu equipo para ver sus repuestos.',t:['Rodillo','Fusor','Cabezal']}];
+var BRANDS=['Canon','Epson','HP','Brother','Samsung','Lexmark','Xerox','Ricoh','Kyocera','Konica Minolta'];
+var PRODUCTS=[{"c": "IMP-EP-L3250", "n": "Impresora multifuncional Epson EcoTank L3250", "col": "Impresoras", "b": "Epson", "t": "Tanque de tinta · Wi-Fi", "p": 899900, "q": 6, "s": "Imprime, copia y escanea", "cp": "Usa tintas Epson 544", "d": "Multifuncional con sistema de tanques EcoTank y conexión Wi-Fi. Incluye botellas de tinta para miles de páginas a bajo costo."}, {"c": "IMP-CA-G3110", "n": "Impresora multifuncional Canon PIXMA G3110", "col": "Impresoras", "b": "Canon", "t": "Tanque de tinta · Wi-Fi", "p": 749900, "q": 4, "s": "Imprime, copia y escanea", "cp": "Usa tintas Canon GI-190", "d": "Multifuncional con tanques de tinta recargables y Wi-Fi, ideal para casa y pequeña oficina."}, {"c": "IMP-HP-ST580", "n": "Impresora multifuncional HP Smart Tank 580", "col": "Impresoras", "b": "HP", "t": "Tanque de tinta · Wi-Fi", "p": 799900, "q": 5, "s": "Imprime, copia y escanea", "cp": "Tintas HP originales para Smart Tank", "d": "Multifuncional de tanque con Wi-Fi y configuración desde la app HP Smart."}, {"c": "IMP-BR-L2350DW", "n": "Impresora láser Brother HL-L2350DW", "col": "Impresoras", "b": "Brother", "t": "Láser monocromática · Wi-Fi", "p": 899900, "q": 3, "s": "Hasta 30 páginas por minuto", "cp": "Usa tóner TN-760 y tambor DR-730", "d": "Láser en blanco y negro con impresión a doble cara automática y Wi-Fi. Pensada para oficinas con alto volumen."}, {"c": "IMP-HP-M111W", "n": "Impresora láser HP LaserJet M111w", "col": "Impresoras", "b": "HP", "t": "Láser monocromática · Wi-Fi", "p": 549900, "q": 7, "s": "Hasta 20 páginas por minuto", "cp": "Usa tóner HP 150A", "d": "Láser compacta en blanco y negro con Wi-Fi, para documentos del día a día."}, {"c": "TN-HP-105A", "n": "Tóner HP 105A negro original (W1105A)", "col": "Tóners", "b": "HP", "t": "Original", "p": 289900, "q": 12, "s": "Aprox. 1.000 páginas", "cp": "HP Laser 107a, 107w, MFP 135a, 135w, 137fnw", "d": "Tóner original HP de color negro."}, {"c": "TN-HP-85A", "n": "Tóner HP 85A negro original (CE285A)", "col": "Tóners", "b": "HP", "t": "Original", "p": 329900, "q": 9, "s": "Aprox. 1.600 páginas", "cp": "LaserJet Pro P1102, P1102w, M1132, M1212nf, M1217nfw", "d": "Tóner original HP de color negro."}, {"c": "TN-HP-150A", "n": "Tóner HP 150A negro original (W1500A)", "col": "Tóners", "b": "HP", "t": "Original", "p": 269900, "q": 8, "s": "Aprox. 975 páginas", "cp": "LaserJet M111w, M141w", "d": "Tóner original HP para la línea LaserJet M111/M141."}, {"c": "TN-BR-TN760", "n": "Tóner Brother TN-760 alto rendimiento", "col": "Tóners", "b": "Brother", "t": "Original", "p": 389900, "q": 6, "s": "Aprox. 3.000 páginas", "cp": "HL-L2350DW, HL-L2370DW, DCP-L2550DW, MFC-L2710DW, MFC-L2750DW", "d": "Tóner original Brother de alto rendimiento."}, {"c": "TN-BR-TN1060", "n": "Tóner Brother TN-1060", "col": "Tóners", "b": "Brother", "t": "Original", "p": 219900, "q": 10, "s": "Aprox. 1.000 páginas", "cp": "HL-1112, DCP-1512, DCP-1617NW, MFC-1810", "d": "Tóner original Brother de color negro."}, {"c": "TI-EP-544K", "n": "Tinta Epson 544 negra 65 ml (T544120)", "col": "Tintas", "b": "Epson", "t": "Botella", "p": 49900, "q": 25, "s": "65 ml · aprox. 4.500 páginas", "cp": "L1110, L3110, L3150, L3210, L3250, L5190", "d": "Botella de tinta original Epson con boquilla que evita derrames."}, {"c": "TI-EP-664K", "n": "Tinta Epson 664 negra 70 ml (T664120)", "col": "Tintas", "b": "Epson", "t": "Botella", "p": 44900, "q": 20, "s": "70 ml · aprox. 4.000 páginas", "cp": "L220, L355, L375, L395, L575", "d": "Botella de tinta original Epson para la línea EcoTank anterior."}, {"c": "TI-CA-GI190K", "n": "Tinta Canon GI-190 negra 135 ml", "col": "Tintas", "b": "Canon", "t": "Botella", "p": 54900, "q": 18, "s": "135 ml · aprox. 6.000 páginas", "cp": "PIXMA G1100, G2100, G3100, G3110", "d": "Botella de tinta original Canon para impresoras PIXMA G."}, {"c": "TI-HP-GT53XL", "n": "Tinta HP GT53XL negra 135 ml", "col": "Tintas", "b": "HP", "t": "Botella", "p": 59900, "q": 15, "s": "135 ml · aprox. 6.000 páginas", "cp": "Ink Tank 115, 315, 415 · Smart Tank 500, 515, 530, 615", "d": "Botella de tinta original HP de alto rendimiento."}, {"c": "TI-BR-BTD60BK", "n": "Tinta Brother BTD60BK negra 108 ml", "col": "Tintas", "b": "Brother", "t": "Botella", "p": 54900, "q": 14, "s": "108 ml · aprox. 6.500 páginas", "cp": "DCP-T310, DCP-T510W, DCP-T710W, MFC-T910DW", "d": "Botella de tinta original Brother para la línea InkBenefit Tank."}, {"c": "RP-BR-DR730", "n": "Tambor Brother DR-730", "col": "Repuestos", "b": "Brother", "t": "Unidad de tambor", "p": 349900, "q": 4, "s": "Aprox. 12.000 páginas", "cp": "HL-L2350DW, HL-L2370DW, DCP-L2550DW, MFC-L2710DW, MFC-L2750DW", "d": "Unidad de tambor original Brother. Se cambia cuando la impresora lo indica."}, {"c": "RP-BR-DR1060", "n": "Tambor Brother DR-1060", "col": "Repuestos", "b": "Brother", "t": "Unidad de tambor", "p": 259900, "q": 3, "s": "Aprox. 10.000 páginas", "cp": "HL-1112, DCP-1512, MFC-1810", "d": "Unidad de tambor original Brother."}, {"c": "RP-HP-OPC85", "n": "Cilindro OPC para cartuchos HP 85A / 35A / 36A / 78A", "col": "Repuestos", "b": "HP", "t": "Compatible", "p": 24900, "q": 30, "s": "1 cilindro", "cp": "Cartuchos CE285A, CB435A, CB436A, CE278A", "d": "Cilindro fotoconductor de reemplazo para recargar o remanufacturar tóners HP."}, {"c": "RP-HP-ROD1102", "n": "Rodillo de recogida de papel para HP LaserJet P1102 / M1132", "col": "Repuestos", "b": "HP", "t": "Compatible", "p": 29900, "q": 12, "s": "1 rodillo", "cp": "LaserJet P1102, P1102w, M1132, M1212nf", "d": "Rodillo que toma la hoja de la bandeja. Se cambia cuando la impresora no jala el papel."}, {"c": "RP-HP-FIL1102", "n": "Película de fusor para HP LaserJet P1102 / M1132", "col": "Repuestos", "b": "HP", "t": "Compatible", "p": 39900, "q": 8, "s": "1 película", "cp": "LaserJet P1102, P1102w, M1132, M1212nf", "d": "Película de teflón del fusor. Se cambia cuando las hojas salen manchadas o arrugadas."}];
+function esc(x){return String(x).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];});}
+function cop(v){return '$ '+String(v).replace(/\B(?=(\d{3})+(?!\d))/g,'.');}
+function slug(b){return b.toLowerCase().replace(/ /g,'-');}
+function renderCat(){
+  var c=CATS[curCat],bw=$('brands'),pg=$('pgrid'),h='';
+  $('cvt').textContent=c.n;$('cvs').textContent=c.s;
+  var inCat=PRODUCTS.filter(function(p){return p.col===c.n;});
+  BRANDS.forEach(function(b){
+    var n=inCat.filter(function(p){return p.b===b;}).length;
+    h+='<button type="button" class="brand'+(b===curBrand?' on':'')+(n?'':' empty')+'" data-b="'+b+'" aria-label="'+b+', '+n+' productos" aria-pressed="'+(b===curBrand)+'"><img src="media/brands/'+slug(b)+'.png" alt="'+b+'" loading="lazy"><span class="cnt">'+(n?n+(n===1?' producto':' productos'):'Próximamente')+'</span></button>';
+  });
+  bw.innerHTML=h;
+  var list=curBrand?inCat.filter(function(p){return p.b===curBrand;}):inCat,o='';
+  list.forEach(function(p){
+    var st=p.q>0?(p.q<=3?'<span class="stk low">Últimas '+p.q+' unidades</span>':'<span class="stk">Disponible · '+p.q+' und.</span>'):'<span class="stk out">Agotado</span>';
+    o+='<article class="pc"><div class="ph"><img src="media/brands/'+slug(p.b)+'.png" alt="" aria-hidden="true"><em>Foto pendiente</em></div><div class="pb"><span class="bt">'+esc(p.b)+' · '+esc(p.t)+'</span><span class="nm">'+esc(p.n)+'</span><span class="sz">'+esc(p.s)+'</span><span class="cp"><b>'+(p.col==='Impresoras'?'Consumibles:':'Compatible con:')+'</b> '+esc(p.col==='Impresoras'?p.cp.replace(/^Usa /,''):p.cp)+'</span><span class="pr">'+cop(p.p)+'</span>'+st+'<a href="#" class="cot">Cotizar por WhatsApp</a><span class="ref">Ref. '+esc(p.c)+'</span></div></article>';
+  });
+  if(!list.length)o='<p class="none">Aún no hay productos de '+esc(curBrand)+' en '+c.n.toLowerCase()+'. Pronto los agregaremos.</p>';
+  pg.innerHTML=o;
+  $('cvh').textContent=curBrand||'Todas las marcas';
+  $('cvn').textContent=list.length+(list.length===1?' producto':' productos');
+}
+function openView(i){curCat=i;curBrand='';renderCat();lastFocus=document.activeElement;viewOpen=true;cv2.hidden=false;cv2.scrollTop=0;cv2.querySelector('.back').focus();}
+function closeView(){viewOpen=false;cv2.hidden=true;if(lastFocus&&lastFocus.focus)lastFocus.focus();}
+$('brands').addEventListener('click',function(e){var b=e.target.closest('.brand');if(!b)return;var v=b.getAttribute('data-b');curBrand=(curBrand===v)?'':v;renderCat();});
+$('pgrid').addEventListener('click',function(e){if(e.target.closest('.cot'))e.preventDefault();});
+$('cvback').addEventListener('click',closeView);
+$('cvlogo').addEventListener('click',function(e){e.preventDefault();closeView();});
+window.addEventListener('keydown',function(e){if(viewOpen&&e.key==='Escape')closeView();});
+Array.prototype.forEach.call(document.querySelectorAll('#cats .ver'),function(a){a.addEventListener('click',function(e){e.preventDefault();openView(+a.getAttribute('data-v'));});});
+
+function finish(){
+  done=true;running=false;p=tp=1;render();H=window.innerHeight;W=window.innerWidth;intro.style.display='none';updCats();
+  hint.style.visibility='hidden';
+  updateTop();
+}
+
+/* Cualquier scroll (arriba o abajo) hace avanzar la entrada. Al terminar, no vuelve hasta recargar. */
+window.addEventListener('wheel',function(e){
+  if(done)return;e.preventDefault();
+  push(Math.min(120,Math.abs(e.deltaY)+Math.abs(e.deltaX))*0.0005);
+},{passive:false});
+var ty=null;
+window.addEventListener('touchstart',function(e){ty=e.touches[0].clientY;},{passive:true});
+window.addEventListener('touchmove',function(e){
+  if(done)return;e.preventDefault();
+  var y=e.touches[0].clientY;if(ty!==null){push(Math.abs(y-ty)*0.0016);}ty=y;
+},{passive:false});
+window.addEventListener('keydown',function(e){
+  if(done)return;
+  if(['ArrowDown','ArrowUp','PageDown','PageUp','End','Home',' '].indexOf(e.key)>-1&&e.target.tagName!=='BUTTON'&&e.target.tagName!=='INPUT'){e.preventDefault();push(0.06);}
+});
+window.addEventListener('resize',function(){if(done){H=window.innerHeight;W=window.innerWidth;updCats();}else{layout();render();}});
+skip.addEventListener('click',function(){push(1);});
+Array.prototype.forEach.call(document.querySelectorAll('[data-top="end"]'),function(a){
+  a.addEventListener('click',function(e){e.preventDefault();goCat(0);});
+});
+$('search').addEventListener('submit',function(e){e.preventDefault();});
+
+/* Cada recarga (F5) empieza desde el logo */
+try{if('scrollRestoration' in history){history.scrollRestoration='manual';}}catch(err){}
+try{if(location.hash){history.replaceState(null,'',location.pathname+location.search);}}catch(err){}
+window.scrollTo(0,0);
+html.classList.add('locked');
+layout();render();updCats();
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){layout();render();});}
+if(reduce){p=tp=1;finish();}
+})();
+</script>
+
+</body>
+</html>
