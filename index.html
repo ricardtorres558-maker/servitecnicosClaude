@@ -225,6 +225,57 @@ section.block{padding-block:72px 24px}
 #pd .pc .ref{font-size:11px;color:var(--slate);text-align:center}
 #pd .pc{cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s}
 #pd .pc:hover,#pd .pc:focus-visible{border-color:var(--cyan);box-shadow:0 8px 24px rgba(15,23,42,.08);transform:translateY(-2px);outline:none}
+.cartbtn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:1.5px solid var(--tint);background:#fff;color:var(--navy);cursor:pointer;flex:0 0 auto}
+.cartbtn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cartbtn .cnt{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--magenta);color:#fff;font:700 12px/20px var(--body);text-align:center}
+.cartbtn .cnt[hidden]{display:none}
+.cartbtn.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.18)}}
+.cartbtn.onvid{order:10;margin-left:14px;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35);color:#fff;backdrop-filter:blur(6px)}
+.cvh .hr{display:flex;align-items:center;gap:14px}
+.cvh .cartbtn:hover{border-color:var(--cyan)}
+#cv2 .pc .addc,#pd .pc .addc{margin-top:6px;border:0;background:var(--navy);color:#fff;border-radius:10px;padding:10px;font:600 15px var(--body);cursor:pointer;transition:background .2s,color .2s}
+#cv2 .pc .addc:hover,#pd .pc .addc:hover{background:var(--cyan);color:var(--navy)}
+#cv2 .pc .addc:disabled,#pd .pc .addc:disabled{background:var(--tint);color:var(--slate);cursor:not-allowed}
+#pd .buy{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}
+#pd .qty{display:flex;align-items:center;border:1.5px solid var(--tint);border-radius:14px;background:#fff;overflow:hidden}
+#pd .qty button{width:44px;align-self:stretch;min-height:52px;border:0;background:none;font:600 22px var(--body);color:var(--navy);cursor:pointer}
+#pd .qty input{width:48px;border:0;text-align:center;font:600 17px var(--body);color:var(--navy);-moz-appearance:textfield;background:none}
+#pd .qty input::-webkit-inner-spin-button{-webkit-appearance:none}
+#pd .buy .add{flex:1 1 200px;border:0;cursor:pointer}
+#pd .buy .add:disabled{background:var(--tint);color:var(--slate);cursor:not-allowed}
+#pd .cta2{text-align:center;border:1.5px solid var(--navy);color:var(--navy);border-radius:14px;padding:14px;font:600 16px var(--body);text-decoration:none}
+#pd .cta2:hover{border-color:var(--cyan);color:var(--cyan)}
+#cartov{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.45)}
+#cartov[hidden],#cart[hidden],#cfoot[hidden]{display:none}
+#cart{position:fixed;top:0;right:0;bottom:0;z-index:101;width:min(420px,100vw);background:var(--paper);display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(15,23,42,.18);animation:slin .25s ease}
+@keyframes slin{from{transform:translateX(100%)}}
+#cart header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1.5px solid var(--tint)}
+#cart h2{margin:0;font:700 22px var(--display);color:var(--navy)}
+#cartx{width:40px;height:40px;border:0;background:none;font-size:20px;color:var(--navy);cursor:pointer}
+#citems{flex:1;overflow-y:auto;padding:8px 20px}
+#citems .empty{margin:40px 0;text-align:center;color:var(--slate)}
+#citems .ci{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--tint)}
+#citems .ci .im{width:64px;height:64px;border-radius:12px;background:#fff;border:1.5px solid var(--tint);display:flex;align-items:center;justify-content:center;overflow:hidden}
+#citems .ci .im img{width:80%;opacity:.35;filter:grayscale(1);mix-blend-mode:multiply}
+#citems .ci .nm{font:600 14px/1.35 var(--body);color:var(--navy)}
+#citems .ci .un{font-size:13px;color:var(--slate)}
+#citems .ci .rt{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+#citems .ci .lt{font:700 15px var(--display);color:var(--navy)}
+#citems .q{display:flex;align-items:center;border:1.5px solid var(--tint);border-radius:10px;background:#fff}
+#citems .q button{width:30px;height:30px;border:0;background:none;font:600 16px var(--body);color:var(--navy);cursor:pointer}
+#citems .q button:disabled{opacity:.3;cursor:not-allowed}
+#citems .q span{min-width:24px;text-align:center;font:600 14px var(--body)}
+#citems .rm{border:0;background:none;color:var(--slate);font-size:12px;text-decoration:underline;cursor:pointer;padding:0}
+#cfoot{padding:16px 20px 20px;border-top:1.5px solid var(--tint);display:flex;flex-direction:column;gap:10px;background:#fff}
+#cfoot .tot{display:flex;justify-content:space-between;align-items:baseline;font-size:16px;color:var(--navy)}
+#cfoot .tot b{font:700 24px var(--display)}
+#cfoot .note{margin:0;font-size:13px;color:var(--slate)}
+#cfoot .cta{text-align:center;background:var(--navy);color:#fff;border-radius:14px;padding:15px;font:700 16px var(--body);text-decoration:none}
+#cfoot .cta:hover{background:var(--cyan);color:var(--navy)}
+#cfoot .clr{border:0;background:none;color:var(--slate);font-size:13px;text-decoration:underline;cursor:pointer}
+#toast{position:fixed;left:50%;bottom:28px;z-index:110;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--navy);color:#fff;border-radius:12px;padding:12px 18px;font:600 15px var(--body);box-shadow:0 10px 30px rgba(15,23,42,.3);transition:opacity .25s,transform .25s;max-width:calc(100vw - 32px)}
+#toast.on{opacity:1;transform:translate(-50%,0)}
 #cv2 .cvnote{margin:28px 0 0;color:var(--slate);font-size:14px}
 #cats{position:relative;height:100vh;height:100svh;background:var(--navy)}
 #cats .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
@@ -327,12 +378,24 @@ section[id],footer[id]{scroll-margin-top:64px}
 </div>
 </div>
 
-<section id="cats" aria-label="Categorías"><div class="stick"><video id="cv" src="media/showcase2.mp4" poster="media/impresoras.jpg" muted playsinline preload="auto" aria-hidden="true"></video><i class="shade"></i><div class="tx on" data-i="0"><span class="no">01 / 04</span><h3>Impresoras</h3><p>Equipos láser y de inyección para casa y oficina.</p><a href="#" class="ver" data-v="0">Ver impresoras</a></div><div class="tx" data-i="1"><span class="no">02 / 04</span><h3>Tóners</h3><p>Para impresoras láser y fotocopiadoras.</p><a href="#" class="ver" data-v="1">Ver tóners</a></div><div class="tx" data-i="2"><span class="no">03 / 04</span><h3>Tintas</h3><p>Botellas y cartuchos para inyección de tinta.</p><a href="#" class="ver" data-v="2">Ver tintas</a></div><div class="tx" data-i="3"><span class="no">04 / 04</span><h3>Repuestos</h3><p>Piezas para mantener tus equipos al día.</p><a href="#" class="ver" data-v="3">Ver repuestos</a></div><nav class="ctabs"><a href="#impresoras" data-i="0" class="on">Impresoras</a><a href="#toners" data-i="1">Tóners</a><a href="#tintas" data-i="2">Tintas</a><a href="#repuestos" data-i="3">Repuestos</a><a class="lg" href="#" data-top="end" aria-label="Servitecnicos, ir al inicio"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#fff" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a><i class="bar"><b></b></i></nav></div></section>
+<section id="cats" aria-label="Categorías"><div class="stick"><video id="cv" src="media/showcase2.mp4" poster="media/impresoras.jpg" muted playsinline preload="auto" aria-hidden="true"></video><i class="shade"></i><div class="tx on" data-i="0"><span class="no">01 / 04</span><h3>Impresoras</h3><p>Equipos láser y de inyección para casa y oficina.</p><a href="#" class="ver" data-v="0">Ver impresoras</a></div><div class="tx" data-i="1"><span class="no">02 / 04</span><h3>Tóners</h3><p>Para impresoras láser y fotocopiadoras.</p><a href="#" class="ver" data-v="1">Ver tóners</a></div><div class="tx" data-i="2"><span class="no">03 / 04</span><h3>Tintas</h3><p>Botellas y cartuchos para inyección de tinta.</p><a href="#" class="ver" data-v="2">Ver tintas</a></div><div class="tx" data-i="3"><span class="no">04 / 04</span><h3>Repuestos</h3><p>Piezas para mantener tus equipos al día.</p><a href="#" class="ver" data-v="3">Ver repuestos</a></div><nav class="ctabs"><a href="#impresoras" data-i="0" class="on">Impresoras</a><a href="#toners" data-i="1">Tóners</a><a href="#tintas" data-i="2">Tintas</a><a href="#repuestos" data-i="3">Repuestos</a><a class="lg" href="#" data-top="end" aria-label="Servitecnicos, ir al inicio"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#fff" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a><button type="button" class="cartbtn onvid" aria-label="Carrito, 0 productos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.4l2.3 10.6h10.1L20 7.5H6.6"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span class="cnt" hidden>0</span></button><i class="bar"><b></b></i></nav></div></section>
 
 </main>
 
+<div id="cartov" hidden></div>
+<aside id="cart" role="dialog" aria-modal="true" aria-labelledby="cartt" hidden>
+  <header><h2 id="cartt">Tu carrito</h2><button type="button" id="cartx" aria-label="Cerrar carrito">✕</button></header>
+  <div id="citems"></div>
+  <footer id="cfoot">
+    <div class="tot"><span>Subtotal</span><b id="ctot">$ 0</b></div>
+    <p class="note">El envío en Bogotá se confirma por WhatsApp según la dirección.</p>
+    <a href="#" class="cta" id="cwa">Finalizar pedido por WhatsApp</a>
+    <button type="button" class="clr" id="cclr">Vaciar carrito</button>
+  </footer>
+</aside>
+<div id="toast" role="status" aria-live="polite"></div>
 <section id="pd" role="dialog" aria-modal="true" aria-labelledby="pdn" hidden>
-  <header class="cvh"><button type="button" class="back" id="pdback">← Volver<span class="lg-only"> al catálogo</span></button><a class="cvlogo" href="#" id="pdlogo" aria-label="Servitecnicos"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a></header>
+  <header class="cvh"><button type="button" class="back" id="pdback">← Volver<span class="lg-only"> al catálogo</span></button><div class="hr"><a class="cvlogo" href="#" id="pdlogo" aria-label="Servitecnicos"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a><button type="button" class="cartbtn" aria-label="Carrito, 0 productos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.4l2.3 10.6h10.1L20 7.5H6.6"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span class="cnt" hidden>0</span></button></div></header>
   <div class="pdw">
     <nav class="crumbs" id="pdcrumbs" aria-label="Ruta"></nav>
     <div class="pdtop">
@@ -344,7 +407,7 @@ section[id],footer[id]{scroll-margin-top:64px}
         <span class="pr" id="pdpr"></span>
         <span id="pdstk"></span>
         <p class="pdesc" id="pddesc"></p>
-        <a href="#" class="cta" id="pdcot">Cotizar por WhatsApp</a>
+        <div class="buy"><div class="qty" role="group" aria-label="Cantidad"><button type="button" id="qminus" aria-label="Menos">−</button><input id="qval" type="number" min="1" value="1" inputmode="numeric" aria-label="Cantidad"><button type="button" id="qplus" aria-label="Más">+</button></div><button type="button" class="cta add" id="pdadd">Agregar al carrito</button></div><a href="#" class="cta2" id="pdcot">Cotizar por WhatsApp</a>
         <ul class="perks"><li>Envíos en Bogotá</li><li>Asesoría para elegir el consumible correcto</li></ul>
       </div>
     </div>
@@ -354,7 +417,7 @@ section[id],footer[id]{scroll-margin-top:64px}
   </div>
 </section>
 <section id="cv2" role="dialog" aria-modal="true" aria-labelledby="cvt" hidden>
-  <header class="cvh"><button type="button" class="back" id="cvback">← Volver</button><a class="cvlogo" href="#" id="cvlogo" aria-label="Servitecnicos"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a></header>
+  <header class="cvh"><button type="button" class="back" id="cvback">← Volver</button><div class="hr"><a class="cvlogo" href="#" id="cvlogo" aria-label="Servitecnicos"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a><button type="button" class="cartbtn" aria-label="Carrito, 0 productos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.4l2.3 10.6h10.1L20 7.5H6.6"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span class="cnt" hidden>0</span></button></div></header>
   <div class="cvw">
     <p class="cvk">Catálogo</p><h2 id="cvt">Impresoras</h2>
     <p class="cvs" id="cvs">Elige una marca para ver los equipos disponibles.</p>
@@ -679,7 +742,7 @@ function goCat(i){
   setTimeout(function(){rate(1);seek(SEG[i].s);playV();cv.style.filter='none';showUI(i);},110);
 }
 window.addEventListener('wheel',function(e){
-  if(!done||viewOpen)return;e.preventDefault();
+  if(!done||viewOpen||cartOpen)return;e.preventDefault();
   var now=performance.now();if(now-accT>200)acc=0;accT=now;
   acc+=e.deltaY;
   if(Math.abs(acc)>=30){var d=acc>0?1:-1;acc=0;nav(d);}
@@ -687,12 +750,12 @@ window.addEventListener('wheel',function(e){
 var ty0=null;
 window.addEventListener('touchstart',function(e){ty0=e.touches[0].clientY;},{passive:true});
 window.addEventListener('touchmove',function(e){
-  if(!done||viewOpen)return;e.preventDefault();
+  if(!done||viewOpen||cartOpen)return;e.preventDefault();
   if(ty0===null)return;var dy=ty0-e.touches[0].clientY;
   if(Math.abs(dy)>40){ty0=e.touches[0].clientY;nav(dy>0?1:-1);}
 },{passive:false});
 window.addEventListener('keydown',function(e){
-  if(!done||viewOpen)return;var k=e.key;
+  if(!done||viewOpen||cartOpen)return;var k=e.key;
   if(k==='ArrowDown'||k==='PageDown'||k===' '){e.preventDefault();nav(1);}
   else if(k==='ArrowUp'||k==='PageUp'){e.preventDefault();nav(-1);}
   else if(k==='Home'){e.preventDefault();goCat(0);}
@@ -725,7 +788,7 @@ function renderCat(){
   var list=curBrand?inCat.filter(function(p){return p.b===curBrand;}):inCat,o='';
   list.forEach(function(p){
     var st=p.q>0?(p.q<=3?'<span class="stk low">Últimas '+p.q+' unidades</span>':'<span class="stk">Disponible · '+p.q+' und.</span>'):'<span class="stk out">Agotado</span>';
-    o+='<article class="pc" data-c="'+esc(p.c)+'" tabindex="0" role="link" aria-label="Ver detalles de '+esc(p.n)+'"><div class="ph"><img src="media/brands/'+slug(p.b)+'.png" alt="" aria-hidden="true"><em>Foto pendiente</em></div><div class="pb"><span class="bt">'+esc(p.b)+' · '+esc(p.t)+'</span><span class="nm">'+esc(p.n)+'</span><span class="sz">'+esc(p.s)+'</span><span class="cp"><b>'+(p.col==='Impresoras'?'Consumibles:':'Compatible con:')+'</b> '+esc(p.col==='Impresoras'?p.cp.replace(/^Usa /,''):p.cp)+'</span><span class="pr">'+cop(p.p)+'</span>'+st+'<span class="cot-v">Ver detalles</span><span class="ref">Ref. '+esc(p.c)+'</span></div></article>';
+    o+='<article class="pc" data-c="'+esc(p.c)+'" tabindex="0" role="link" aria-label="Ver detalles de '+esc(p.n)+'"><div class="ph"><img src="media/brands/'+slug(p.b)+'.png" alt="" aria-hidden="true"><em>Foto pendiente</em></div><div class="pb"><span class="bt">'+esc(p.b)+' · '+esc(p.t)+'</span><span class="nm">'+esc(p.n)+'</span><span class="sz">'+esc(p.s)+'</span><span class="cp"><b>'+(p.col==='Impresoras'?'Consumibles:':'Compatible con:')+'</b> '+esc(p.col==='Impresoras'?p.cp.replace(/^Usa /,''):p.cp)+'</span><span class="pr">'+cop(p.p)+'</span>'+st+(p.q>0?'<button type="button" class="addc" data-add="'+esc(p.c)+'">Agregar al carrito</button>':'<button type="button" class="addc" disabled>Agotado</button>')+'<span class="ref">Ref. '+esc(p.c)+'</span></div></article>';
   });
   if(!list.length)o='<p class="none">Aún no hay productos de '+esc(curBrand)+' en '+c.n.toLowerCase()+'. Pronto los agregaremos.</p>';
   pg.innerHTML=o;
@@ -737,7 +800,7 @@ function closeView(){viewOpen=false;cv2.hidden=true;if(lastFocus&&lastFocus.focu
 $('brands').addEventListener('click',function(e){var b=e.target.closest('.brand');if(!b)return;var v=b.getAttribute('data-b');curBrand=(curBrand===v)?'':v;renderCat();});
 $('cvback').addEventListener('click',closeView);
 $('cvlogo').addEventListener('click',function(e){e.preventDefault();closeView();});
-window.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(pdOpen){closeProduct();}else if(viewOpen){closeView();}});
+window.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(cartOpen){closeCart();}else if(pdOpen){closeProduct();}else if(viewOpen){closeView();}});
 Array.prototype.forEach.call(document.querySelectorAll('#cats .ver'),function(a){a.addEventListener('click',function(e){e.preventDefault();openView(+a.getAttribute('data-v'));});});
 
 
@@ -761,7 +824,7 @@ function stockHTML(p,big){
   return p.q>0?(p.q<=3?'<span class="stk low">Últimas '+p.q+' unidades</span>':'<span class="stk">Disponible · '+p.q+' und.</span>'):'<span class="stk out">Agotado</span>';
 }
 function cardHTML(p){
-  return '<article class="pc" data-c="'+esc(p.c)+'" tabindex="0" role="link" aria-label="Ver detalles de '+esc(p.n)+'"><div class="ph">'+(p.f&&p.f.length?'<img src="'+esc(p.f[0])+'" alt="" style="width:100%;height:100%;object-fit:contain;opacity:1;filter:none">':'<img src="media/brands/'+slug(p.b)+'.png" alt="" aria-hidden="true"><em>Foto pendiente</em>')+'</div><div class="pb"><span class="bt">'+esc(p.b)+' · '+esc(p.t)+'</span><span class="nm">'+esc(p.n)+'</span><span class="sz">'+esc(p.s)+'</span><span class="pr">'+cop(p.p)+'</span>'+stockHTML(p)+'</div></article>';
+  return '<article class="pc" data-c="'+esc(p.c)+'" tabindex="0" role="link" aria-label="Ver detalles de '+esc(p.n)+'"><div class="ph">'+(p.f&&p.f.length?'<img src="'+esc(p.f[0])+'" alt="" style="width:100%;height:100%;object-fit:contain;opacity:1;filter:none">':'<img src="media/brands/'+slug(p.b)+'.png" alt="" aria-hidden="true"><em>Foto pendiente</em>')+'</div><div class="pb"><span class="bt">'+esc(p.b)+' · '+esc(p.t)+'</span><span class="nm">'+esc(p.n)+'</span><span class="sz">'+esc(p.s)+'</span><span class="pr">'+cop(p.p)+'</span>'+stockHTML(p)+(p.q>0?'<button type="button" class="addc" data-add="'+esc(p.c)+'">Agregar al carrito</button>':'<button type="button" class="addc" disabled>Agotado</button>')+'</div></article>';
 }
 function waLink(p){
   var msg='Hola Servitecnicos, quiero cotizar: '+p.n+' (Ref. '+p.c+')';
@@ -796,6 +859,7 @@ function openProduct(code){
   var items=(p.col==='Impresoras'?p.cp.replace(/^Usa /,''):p.cp).split(/\s*[,·]\s*|\s+y\s+/).filter(Boolean);
   $('pdcompat').innerHTML=items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
   $('pdrel').innerHTML=related(p).map(cardHTML).join('');
+  $('qval').value=1;$('qval').max=Math.max(1,p.q);$('pdadd').disabled=p.q<=0;$('pdadd').textContent=p.q>0?'Agregar al carrito':'Agotado';
   $('pdback').focus({preventScroll:true});
 }
 function closeProduct(){pdOpen=false;pd.hidden=true;if(pdLast&&pdLast.focus)pdLast.focus();}
@@ -812,6 +876,76 @@ $('pdcot').addEventListener('click',function(e){if(!WHATSAPP){e.preventDefault()
 $('pdback').addEventListener('click',closeProduct);
 $('pdlogo').addEventListener('click',function(e){e.preventDefault();closeProduct();closeView();});
 $('pdcrumbs').addEventListener('click',function(e){if(e.target.id==='crcat'){e.preventDefault();closeProduct();}});
+
+
+/* Carrito */
+var CART=[],cartOpen=false,cartLast=null;
+try{CART=JSON.parse(localStorage.getItem('sv_cart')||'[]')||[];}catch(e){CART=[];}
+function prodBy(c){return PRODUCTS.filter(function(x){return x.c===c;})[0];}
+CART=(Array.isArray(CART)?CART:[]).filter(function(it){return it&&prodBy(it.c)&&it.n>0;});
+function saveCart(){try{localStorage.setItem('sv_cart',JSON.stringify(CART));}catch(e){}}
+function cartCount(){return CART.reduce(function(a,it){return a+it.n;},0);}
+function cartTotal(){return CART.reduce(function(a,it){var p=prodBy(it.c);return a+(p?p.p*it.n:0);},0);}
+function toast(msg){var t=$('toast');t.textContent=msg;t.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(function(){t.classList.remove('on');},2200);}
+function updBadges(bump){
+  var n=cartCount();
+  Array.prototype.forEach.call(document.querySelectorAll('.cartbtn'),function(b){
+    var c=b.querySelector('.cnt');c.textContent=n>99?'99+':n;c.hidden=!n;
+    b.setAttribute('aria-label','Carrito, '+n+(n===1?' producto':' productos'));
+    if(bump){b.classList.remove('bump');void b.offsetWidth;b.classList.add('bump');}
+  });
+}
+function addToCart(code,n){
+  var p=prodBy(code);if(!p||p.q<=0)return;
+  var it=CART.filter(function(x){return x.c===code;})[0],cur=it?it.n:0,can=Math.min(n,p.q-cur);
+  if(can<=0){toast('Ya tienes en el carrito todas las unidades disponibles');return;}
+  if(it)it.n+=can;else CART.push({c:code,n:can});
+  saveCart();updBadges(true);renderCart();
+  toast(can+(can===1?' unidad agregada: ':' unidades agregadas: ')+p.n);
+}
+function setQty(code,n){
+  var p=prodBy(code),it=CART.filter(function(x){return x.c===code;})[0];if(!it)return;
+  it.n=Math.max(0,Math.min(n,p?p.q:n));
+  if(!it.n)CART=CART.filter(function(x){return x!==it;});
+  saveCart();updBadges(false);renderCart();
+}
+function cartMsg(){
+  var l=['Hola Servitecnicos, quiero hacer este pedido:',''];
+  CART.forEach(function(it){var p=prodBy(it.c);l.push('• '+it.n+' x '+p.n+' (Ref. '+p.c+') — '+cop(p.p*it.n));});
+  l.push('','Subtotal: '+cop(cartTotal()),'','¿Me confirman disponibilidad y el valor del envío?');
+  return l.join('\n');
+}
+function renderCart(){
+  var box=$('citems'),h='';
+  if(!CART.length){box.innerHTML='<p class="empty">Tu carrito está vacío.</p>';$('cfoot').hidden=true;return;}
+  $('cfoot').hidden=false;
+  CART.forEach(function(it){var p=prodBy(it.c);
+    h+='<div class="ci" data-c="'+esc(p.c)+'"><div class="im"><img src="media/brands/'+slug(p.b)+'.png" alt=""></div><div><div class="nm">'+esc(p.n)+'</div><div class="un">'+cop(p.p)+' c/u · Ref. '+esc(p.c)+'</div></div><div class="rt"><span class="lt">'+cop(p.p*it.n)+'</span><div class="q"><button type="button" data-d="-1" aria-label="Quitar una">−</button><span>'+it.n+'</span><button type="button" data-d="1" aria-label="Agregar una"'+(it.n>=p.q?' disabled':'')+'>+</button></div><button type="button" class="rm">Eliminar</button></div></div>';
+  });
+  box.innerHTML=h;$('ctot').textContent=cop(cartTotal());
+  var wa=$('cwa');wa.href=WHATSAPP?'https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(cartMsg()):'#';wa.target=WHATSAPP?'_blank':'';
+}
+function openCart(){cartLast=document.activeElement;renderCart();cartOpen=true;$('cart').hidden=false;$('cartov').hidden=false;$('cartx').focus();}
+function closeCart(){cartOpen=false;$('cart').hidden=true;$('cartov').hidden=true;if(cartLast&&cartLast.focus)cartLast.focus();}
+Array.prototype.forEach.call(document.querySelectorAll('.cartbtn'),function(b){b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openCart();});});
+$('cartx').addEventListener('click',closeCart);$('cartov').addEventListener('click',closeCart);
+$('cclr').addEventListener('click',function(){CART=[];saveCart();updBadges(false);renderCart();});
+$('cwa').addEventListener('click',function(e){if(!WHATSAPP){e.preventDefault();toast('Falta configurar el número de WhatsApp de Servitecnicos');}});
+$('citems').addEventListener('click',function(e){
+  var row=e.target.closest('.ci');if(!row)return;var c=row.getAttribute('data-c'),it=CART.filter(function(x){return x.c===c;})[0];
+  if(e.target.classList.contains('rm'))setQty(c,0);
+  else{var b=e.target.closest('button[data-d]');if(b&&it)setQty(c,it.n+(+b.getAttribute('data-d')));}
+});
+/* botones de agregar en tarjetas (catálogo y relacionados) */
+[$('pgrid'),$('pdrel')].forEach(function(el){el.addEventListener('click',function(e){var b=e.target.closest('.addc');if(b){e.stopPropagation();if(!b.disabled)addToCart(b.getAttribute('data-add'),1);}},true);});
+/* ficha: cantidad + agregar */
+function qmax(){return curProd?Math.max(1,curProd.q):1;}
+function setQ(v){var i=$('qval');v=Math.max(1,Math.min(qmax(),parseInt(v,10)||1));i.value=v;}
+$('qminus').addEventListener('click',function(){setQ(+$('qval').value-1);});
+$('qplus').addEventListener('click',function(){setQ(+$('qval').value+1);});
+$('qval').addEventListener('change',function(){setQ(this.value);});
+$('pdadd').addEventListener('click',function(){if(curProd)addToCart(curProd.c,+$('qval').value||1);});
+updBadges(false);
 
 function finish(){
   done=true;running=false;p=tp=1;render();H=window.innerHeight;W=window.innerWidth;intro.style.display='none';updCats();
