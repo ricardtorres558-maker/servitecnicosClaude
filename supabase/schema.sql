@@ -46,6 +46,7 @@ create trigger productos_actualizado before update on productos
   for each row execute function tocar_actualizado();
 
 -- Administradores: solo los correos de esta lista pueden editar (no basta con crear una cuenta)
+-- Para agregar uno: insert into administradores (email) values ('correo@ejemplo.com');
 create table if not exists administradores (
   email text primary key
 );
@@ -67,11 +68,15 @@ alter table marcas      enable row level security;
 alter table productos   enable row level security;
 
 drop policy if exists "ver colecciones" on colecciones;
-create policy "ver colecciones" on colecciones for select using (visible or (select es_admin()));
+create policy "ver colecciones" on colecciones for select using (visible);
+drop policy if exists "admin ve todas las colecciones" on colecciones;
+create policy "admin ve todas las colecciones" on colecciones for select to authenticated using ((select es_admin()));
 drop policy if exists "ver marcas" on marcas;
 create policy "ver marcas" on marcas for select using (true);
 drop policy if exists "ver productos" on productos;
-create policy "ver productos" on productos for select using (visible or (select es_admin()));
+create policy "ver productos" on productos for select using (visible);
+drop policy if exists "admin ve todos los productos" on productos;
+create policy "admin ve todos los productos" on productos for select to authenticated using ((select es_admin()));
 
 drop policy if exists "editar colecciones" on colecciones;
 create policy "editar colecciones" on colecciones for all to authenticated using ((select es_admin())) with check ((select es_admin()));

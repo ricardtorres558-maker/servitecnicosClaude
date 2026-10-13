@@ -25,3 +25,6 @@ insert into productos (codigo,nombre,coleccion_id,marca_id,tipo,precio,cantidad,
   ('RP-HP-ROD1102','Rodillo de recogida de papel para HP LaserJet P1102 / M1132','repuestos','hp','Compatible',29900,12,'1 rodillo','LaserJet P1102, P1102w, M1132, M1212nf','Rodillo que toma la hoja de la bandeja. Se cambia cuando la impresora no jala el papel.'),
   ('RP-HP-FIL1102','Película de fusor para HP LaserJet P1102 / M1132','repuestos','hp','Compatible',39900,8,'1 película','LaserJet P1102, P1102w, M1132, M1212nf','Película de teflón del fusor. Se cambia cuando las hojas salen manchadas o arrugadas.')
 on conflict (codigo) do nothing;
+
+-- Primer administrador
+insert into administradores (email) values ('ricardtorres558@gmail.com') on conflict do nothing;
