@@ -26,14 +26,14 @@ a{color:inherit;text-decoration:none}
 /* ===== Escena de entrada ===== */
 #intro{position:fixed;inset:0;z-index:60}
 #menu,#content{display:none!important}
-#scene{position:relative;height:100vh;height:100svh;overflow:hidden;background:var(--paper)}
+#scene{position:relative;height:100vh;height:100svh;overflow:hidden;background:rgba(250,251,253,.5);-webkit-backdrop-filter:blur(16px) saturate(1.1);backdrop-filter:blur(16px) saturate(1.1)}
 html.locked,html.locked body{overflow:hidden;height:100%;overscroll-behavior:none}
 #scene > *{position:absolute}
 #content{background:radial-gradient(ellipse at 50% 50%,#F3F6FB 0%,var(--tint) 62%,#DFE6F1 100%);opacity:0;overflow:hidden;pointer-events:none}
 #content video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}
 #content video.on{opacity:1}
 #content .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,23,42,.62),rgba(15,23,42,.18) 60%,rgba(15,23,42,.05))}
-#bgimg{inset:0;display:block;background:url(media/fondo-intro.jpg) center/cover no-repeat;pointer-events:none}
+#bgimg{display:none!important;inset:0;background:url(media/fondo-intro.jpg) center/cover no-repeat;pointer-events:none}
 #cv2::before{content:"";position:fixed;inset:0;z-index:-1;background:var(--cvbg,url(media/fondo.jpg)) right center/cover no-repeat;pointer-events:none}
 #sk{pointer-events:none}
 #sk i{position:absolute;display:block;background:var(--skel);border-radius:4px;opacity:0}
@@ -778,8 +778,10 @@ function render(){
   fx.style.transform='scale('+(1+7*z*z).toFixed(3)+')';
   fx.style.opacity=(1-S(t,5.0,6.3)).toFixed(3);
   var bgo=(1-S(t,4.0,6.0)).toFixed(3);
-  scene.style.backgroundColor='rgba(250,251,253,'+bgo+')';
-  $('bgimg').style.opacity=bgo;
+  /* velo difuminado que deja ver la página de abajo; se disuelve al abrir el logo */
+  scene.style.backgroundColor='rgba(250,251,253,'+(0.5*bgo).toFixed(3)+')';
+  var bl='blur('+(16*bgo).toFixed(1)+'px) saturate('+(1+0.1*bgo).toFixed(2)+')';
+  scene.style.backdropFilter=bl;scene.style.webkitBackdropFilter=bl;
 
   hint.style.opacity=1-S(t,0,0.4);
   var ready=p>0.9;
