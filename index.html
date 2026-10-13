@@ -34,7 +34,7 @@ html.locked,html.locked body{overflow:hidden;height:100%;overscroll-behavior:non
 #content video.on{opacity:1}
 #content .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,23,42,.62),rgba(15,23,42,.18) 60%,rgba(15,23,42,.05))}
 #bgimg{inset:0;display:block;background:url(media/fondo.jpg) right center/cover no-repeat;pointer-events:none}
-#cv2::before{content:"";position:fixed;inset:0;z-index:-1;background:url(media/fondo.jpg) right center/cover no-repeat;pointer-events:none}
+#cv2::before{content:"";position:fixed;inset:0;z-index:-1;background:var(--cvbg,url(media/fondo.jpg)) right center/cover no-repeat;pointer-events:none}
 #sk{pointer-events:none}
 #sk i{position:absolute;display:block;background:var(--skel);border-radius:4px;opacity:0}
 #lines{inset:0;pointer-events:none}
@@ -800,7 +800,8 @@ function renderCat(){
   $('cvh').textContent=curBrand||'Todas las marcas';
   $('cvn').textContent=list.length+(list.length===1?' producto':' productos');
 }
-function openView(i){curCat=i;curBrand='';renderCat();lastFocus=document.activeElement;viewOpen=true;cv2.hidden=false;cv2.scrollTop=0;cv2.querySelector('.back').focus();}
+var CATBG=['media/fondo.jpg','media/fondo-toners.jpg','media/fondo.jpg','media/fondo.jpg']; /* fondo del catálogo por categoría */
+function openView(i){curCat=i;cv2.style.setProperty('--cvbg','url('+CATBG[i]+')');curBrand='';renderCat();lastFocus=document.activeElement;viewOpen=true;cv2.hidden=false;cv2.scrollTop=0;cv2.querySelector('.back').focus();}
 function closeView(){viewOpen=false;cv2.hidden=true;if(lastFocus&&lastFocus.focus)lastFocus.focus();}
 $('brands').addEventListener('click',function(e){var b=e.target.closest('.brand');if(!b)return;var v=b.getAttribute('data-b');curBrand=(curBrand===v)?'':v;renderCat();});
 $('cvback').addEventListener('click',closeView);
