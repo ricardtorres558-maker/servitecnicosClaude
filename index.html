@@ -800,7 +800,7 @@ function renderCat(){
   $('cvh').textContent=curBrand||'Todas las marcas';
   $('cvn').textContent=list.length+(list.length===1?' producto':' productos');
 }
-var CATBG=['media/fondo.jpg','media/fondo-toners.jpg','media/fondo.jpg','media/fondo.jpg']; /* fondo del catálogo por categoría */
+var CATBG=['media/fondo.jpg','media/fondo-toners.jpg','media/fondo-tintas.jpg','media/fondo.jpg']; /* fondo del catálogo por categoría */
 function openView(i){curCat=i;cv2.style.setProperty('--cvbg','url('+CATBG[i]+')');curBrand='';renderCat();lastFocus=document.activeElement;viewOpen=true;cv2.hidden=false;cv2.scrollTop=0;cv2.querySelector('.back').focus();}
 function closeView(){viewOpen=false;cv2.hidden=true;if(lastFocus&&lastFocus.focus)lastFocus.focus();}
 $('brands').addEventListener('click',function(e){var b=e.target.closest('.brand');if(!b)return;var v=b.getAttribute('data-b');curBrand=(curBrand===v)?'':v;renderCat();});
