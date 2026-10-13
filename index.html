@@ -279,6 +279,64 @@ section.block{padding-block:72px 24px}
 #cfoot .clr{border:0;background:none;color:var(--slate);font-size:13px;text-decoration:underline;cursor:pointer}
 #toast{position:fixed;left:50%;bottom:28px;z-index:110;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--navy);color:#fff;border-radius:12px;padding:12px 18px;font:600 15px var(--body);box-shadow:0 10px 30px rgba(15,23,42,.3);transition:opacity .25s,transform .25s;max-width:calc(100vw - 32px)}
 #toast.on{opacity:1;transform:translate(-50%,0)}
+#ck{position:fixed;inset:0;z-index:95;background:var(--paper);overflow-y:auto;overscroll-behavior:contain}
+#ck[hidden],#ckform[hidden],#ckdone[hidden],#dir[hidden],.ckerr[hidden]{display:none}
+#ck .cvh{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px max(16px,5vw);background:rgba(250,251,253,.94);backdrop-filter:blur(8px);border-bottom:1.5px solid var(--tint)}
+#ck .back{font:600 16px var(--body);color:var(--navy);background:#fff;border:1.5px solid var(--tint);border-radius:12px;padding:10px 16px;cursor:pointer}
+#ck .back:hover{border-color:var(--cyan)}
+#ck .secure{display:flex;align-items:center;gap:8px;font:600 14px var(--body);color:#0B7A43}
+#ck .secure svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+#ck .ckw{max-width:1120px;margin:0 auto;padding:24px max(16px,5vw) 72px}
+#ck .steps{list-style:none;margin:0 0 18px;padding:0;display:flex;gap:8px;flex-wrap:wrap;font:600 14px var(--body);color:var(--slate);counter-reset:st}
+#ck .steps li{counter-increment:st;display:flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:999px;background:#fff;border:1.5px solid var(--tint)}
+#ck .steps li::before{content:counter(st);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--tint);color:var(--navy);font-size:12px}
+#ck .steps li.on{border-color:var(--cyan);color:var(--navy)}
+#ck .steps li.on::before{background:var(--cyan);color:var(--navy)}
+#ck .steps li.done::before{content:"✓";background:var(--navy);color:#fff}
+#ck .demo{margin:0 0 24px;padding:12px 16px;border-radius:12px;background:#FFF4CC;color:#6B4A00;font-size:14px}
+#ck .demo.small{margin-top:20px}
+#ck h2{margin:0 0 20px;font:700 clamp(28px,4vw,40px)/1.1 var(--display);color:var(--navy)}
+#ck .ckgrid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:start}
+#ck fieldset{margin:0 0 18px;padding:20px;border:1.5px solid var(--tint);border-radius:18px;background:#fff;display:flex;flex-direction:column;gap:14px}
+#ck legend{display:flex;align-items:center;gap:10px;padding:0 6px;font:700 18px var(--display);color:var(--navy)}
+#ck legend span{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--navy);color:#fff;font-size:14px}
+#ck label{display:flex;flex-direction:column;gap:6px;font:600 14px var(--body);color:var(--navy)}
+#ck input:not([type=radio]):not([type=checkbox]),#ck select,#ck textarea{font:400 16px var(--body);color:var(--navy);padding:12px 14px;border:1.5px solid var(--mist);border-radius:12px;background:#fff;width:100%}
+#ck input:focus,#ck select:focus,#ck textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,168,232,.2)}
+#ck .bad{border-color:var(--magenta)!important;box-shadow:0 0 0 3px rgba(230,0,126,.12)!important}
+#ck .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#ck #dir{display:flex;flex-direction:column;gap:14px}
+#ck .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#ck .opt{position:relative;flex-direction:column;gap:2px;padding:14px 14px 14px 44px;border:1.5px solid var(--tint);border-radius:14px;cursor:pointer;font-weight:400}
+#ck .opt input{position:absolute;left:16px;top:17px;width:18px;height:18px;accent-color:var(--cyan)}
+#ck .opt b{font:600 15px var(--body);color:var(--navy)}
+#ck .opt small{font-size:13px;color:var(--slate)}
+#ck .opt:has(input:checked){border-color:var(--cyan);background:#F2FBFF}
+#ck .paynote{margin:0;font-size:14px;color:var(--slate)}
+#ck .terms{flex-direction:row;align-items:flex-start;gap:10px;font-weight:400;color:var(--slate)}
+#ck .terms input{margin-top:3px;width:18px;height:18px;accent-color:var(--cyan)}
+#ck .cksum{position:sticky;top:88px;padding:20px;border:1.5px solid var(--tint);border-radius:18px;background:#fff;display:flex;flex-direction:column;gap:10px}
+#ck .cksum.done{position:static;max-width:520px;margin:0 auto}
+#ck .cksum h3{margin:0 0 4px;font:700 20px var(--display);color:var(--navy)}
+#ck .ckl{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--slate);padding-bottom:8px;border-bottom:1px solid var(--tint)}
+#ck .ckl b{color:var(--navy);white-space:nowrap}
+#ck .ckrow{display:flex;justify-content:space-between;font-size:15px;color:var(--navy)}
+#ck .ckrow.tot{font-size:18px;padding-top:6px;border-top:1.5px solid var(--tint)}
+#ck .ckrow.tot b{font:700 24px var(--display)}
+#ck .cta{border:0;cursor:pointer;text-align:center;background:var(--navy);color:#fff;border-radius:14px;padding:16px;font:700 17px var(--body)}
+#ck .cta:hover{background:var(--cyan);color:var(--navy)}
+#ck .ckerr{margin:0;font-size:14px;color:#B4123F}
+#ck .ckwa{text-align:center;font-size:14px;color:var(--slate);text-decoration:underline}
+#ckdone{text-align:center;padding-top:16px}
+#ckdone .okic{width:72px;height:72px;margin:0 auto 16px;border-radius:50%;background:#E6F6EE;color:#0B7A43;font:700 36px/72px var(--body)}
+#ckdone .ordn{margin:0 0 8px;color:var(--slate)}
+#ckdone #okmsg{max-width:560px;margin:0 auto 24px;color:var(--slate)}
+#ckdone .cta{display:block;margin:24px auto 0;padding-inline:40px}
+#cfoot .cta2{text-align:center;border:1.5px solid var(--navy);color:var(--navy);border-radius:14px;padding:13px;font:600 15px var(--body);text-decoration:none}
+#cfoot .cta2:hover{border-color:var(--cyan);color:var(--cyan)}
+#cfoot button.cta{border:0;cursor:pointer}
+@media(max-width:860px){#ck .ckgrid{grid-template-columns:1fr}#ck .cksum{position:static}}
+@media(max-width:560px){#ck .row2,#ck .opts{grid-template-columns:1fr}}
 #cv2 .cvnote{margin:28px 0 0;color:var(--slate);font-size:14px}
 #cats{position:relative;height:100vh;height:100svh;background:var(--navy)}
 #cats .stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
@@ -393,11 +451,81 @@ section[id],footer[id]{scroll-margin-top:64px}
   <footer id="cfoot">
     <div class="tot"><span>Subtotal</span><b id="ctot">$ 0</b></div>
     <p class="note">El envío en Bogotá se confirma por WhatsApp según la dirección.</p>
-    <a href="#" class="cta" id="cwa">Finalizar pedido por WhatsApp</a>
+    <button type="button" class="cta" id="cpay">Ir a pagar</button>
+    <a href="#" class="cta2" id="cwa">Pedir por WhatsApp</a>
     <button type="button" class="clr" id="cclr">Vaciar carrito</button>
   </footer>
 </aside>
 <div id="toast" role="status" aria-live="polite"></div>
+<section id="ck" role="dialog" aria-modal="true" aria-labelledby="ckt" hidden>
+  <header class="cvh"><button type="button" class="back" id="ckback">← Volver<span class="lg-only"> al carrito</span></button><div class="hr"><span class="secure"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Pago seguro</span></div></header>
+  <div class="ckw">
+    <ol class="steps" aria-label="Pasos de la compra"><li class="done">Carrito</li><li class="on" id="st2">Datos y pago</li><li id="st3">Confirmación</li></ol>
+    <div class="demo" role="note"><b>Vista previa.</b> Los pagos en línea todavía no están activos: este formulario no cobra ni guarda datos.</div>
+    <div id="ckform">
+      <h2 id="ckt">Finaliza tu compra</h2>
+      <form id="ckf" novalidate>
+        <div class="ckgrid">
+          <div class="ckmain">
+            <fieldset><legend><span>1</span>Datos de contacto</legend>
+              <div class="row2">
+                <label>Nombre completo<input name="nombre" autocomplete="name" required></label>
+                <label>Cédula o NIT<input name="doc" inputmode="numeric" required></label>
+              </div>
+              <div class="row2">
+                <label>Celular<input name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="300 123 4567" required></label>
+                <label>Correo electrónico<input name="email" type="email" autocomplete="email" required></label>
+              </div>
+            </fieldset>
+            <fieldset><legend><span>2</span>Entrega</legend>
+              <div class="opts" role="radiogroup" aria-label="Tipo de entrega">
+                <label class="opt"><input type="radio" name="entrega" value="domicilio" checked><b>Envío a domicilio</b><small>En Bogotá · el costo se confirma según la dirección</small></label>
+                <label class="opt"><input type="radio" name="entrega" value="recoger"><b>Recoger en el local</b><small>Sin costo · te avisamos cuando esté listo</small></label>
+              </div>
+              <div id="dir">
+                <label>Dirección<input name="direccion" autocomplete="street-address" placeholder="Calle 00 # 00-00, apto 000" required></label>
+                <div class="row2">
+                  <label>Barrio<input name="barrio" required></label>
+                  <label>Localidad<select name="localidad" required><option value="">Elige…</option><option>Usaquén</option><option>Chapinero</option><option>Santa Fe</option><option>San Cristóbal</option><option>Usme</option><option>Tunjuelito</option><option>Bosa</option><option>Kennedy</option><option>Fontibón</option><option>Engativá</option><option>Suba</option><option>Barrios Unidos</option><option>Teusaquillo</option><option>Los Mártires</option><option>Antonio Nariño</option><option>Puente Aranda</option><option>La Candelaria</option><option>Rafael Uribe Uribe</option><option>Ciudad Bolívar</option><option>Sumapaz</option></select></label>
+                </div>
+                <label>Indicaciones para el envío (opcional)<textarea name="notas" rows="2" placeholder="Ej.: dejar en portería, horario de oficina"></textarea></label>
+              </div>
+            </fieldset>
+            <fieldset><legend><span>3</span>Método de pago</legend>
+              <div class="opts pay" role="radiogroup" aria-label="Método de pago">
+                <label class="opt"><input type="radio" name="pago" value="tarjeta" checked><b>Tarjeta crédito o débito</b><small>Visa, Mastercard, American Express</small></label>
+                <label class="opt"><input type="radio" name="pago" value="pse"><b>PSE</b><small>Débito desde tu cuenta bancaria</small></label>
+                <label class="opt"><input type="radio" name="pago" value="nequi"><b>Nequi</b><small>Aprueba el pago desde tu celular</small></label>
+                <label class="opt"><input type="radio" name="pago" value="contraentrega"><b>Pago contra entrega</b><small>Efectivo o transferencia al recibir · solo Bogotá</small></label>
+              </div>
+              <p class="paynote" id="paynote">Al tocar Pagar se abrirá la ventana segura de la pasarela de pagos para completar el pago con tarjeta.</p>
+            </fieldset>
+            <label class="terms"><input type="checkbox" name="terminos" required> Acepto los términos y condiciones y la política de tratamiento de datos de Servitecnicos.</label>
+          </div>
+          <aside class="cksum" aria-label="Resumen del pedido">
+            <h3>Tu pedido</h3>
+            <div id="cklines"></div>
+            <div class="ckrow"><span>Subtotal</span><b id="cksub">$ 0</b></div>
+            <div class="ckrow"><span>Envío</span><b id="ckenv">Por confirmar</b></div>
+            <div class="ckrow tot"><span>Total</span><b id="cktot">$ 0</b></div>
+            <button type="submit" class="cta" id="ckpay">Pagar</button>
+            <p class="ckerr" id="ckerr" role="alert" hidden></p>
+            <a href="#" class="ckwa" id="ckwa">Prefiero pedir por WhatsApp</a>
+          </aside>
+        </div>
+      </form>
+    </div>
+    <div id="ckdone" hidden>
+      <div class="okic" aria-hidden="true">✓</div>
+      <h2>¡Pedido recibido!</h2>
+      <p class="ordn">Pedido <b id="ordn"></b></p>
+      <p id="okmsg"></p>
+      <div class="cksum done"><h3>Resumen</h3><div id="oklines"></div><div class="ckrow tot"><span>Total</span><b id="oktot"></b></div></div>
+      <p class="demo small">Vista previa: este pedido no se cobró ni se guardó. Cuando la pasarela esté activa, aquí verás la confirmación real del pago.</p>
+      <button type="button" class="cta" id="okhome">Volver al inicio</button>
+    </div>
+  </div>
+</section>
 <section id="pd" role="dialog" aria-modal="true" aria-labelledby="pdn" hidden>
   <header class="cvh"><button type="button" class="back" id="pdback">← Volver<span class="lg-only"> al catálogo</span></button><div class="hr"><a class="cvlogo" href="#" id="pdlogo" aria-label="Servitecnicos"><svg viewBox="20 20 972 951" aria-hidden="true"><path fill="#0049B0" fill-rule="evenodd" d="M21 524 L275 772 L371 864 L436 807 L471 840 L466 846 L360 945 L384 969 L496 863 L606 970 L631 946 L536 856 L521 840 L557 807 L618 866 L820 684 L982 533 L990 524 L940 524 L853 605 L823 635 L730 717 L619 820 L615 818 L582 785 L685 692 L736 648 L868 525 L818 525 L717 619 L669 660 L558 762 L527 731 L631 638 L754 524 L703 524 L502 707 L313 524 L311 523 L262 523 L476 729 L439 761 L437 761 L192 523 L143 523 L412 784 L375 816 L372 817 L71 524ZM501 753 L533 784 L496 818 L462 784ZM989 473 L642 147 L572 212 L531 174 L670 45 L645 20 L506 151 L469 117 L370 21 L345 44 L345 46 L481 174 L440 211 L374 149 L371 150 L21 469 L21 470 L72 470 L262 299 L374 195 L405 223 L415 234 L160 470 L212 470 L441 257 L475 288 L481 295 L425 345 L291 469 L341 469 L419 397 L446 374 L505 318 L507 318 L669 471 L671 472 L719 472 L531 295 L571 258 L573 258 L798 473 L849 473 L598 235 L606 226 L642 193 L739 286 L938 473ZM507 197 L542 229 L547 235 L506 272 L474 243 L466 234 L501 201Z"/></svg><span>Servi<b>técnicos</b></span></a><button type="button" class="cartbtn" aria-label="Carrito, 0 productos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.4l2.3 10.6h10.1L20 7.5H6.6"/><circle cx="9.5" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg><span class="cnt" hidden>0</span></button></div></header>
   <div class="pdw">
@@ -748,7 +876,7 @@ function goCat(i){
   setTimeout(function(){rate(1);seek(SEG[i].s);playV();cv.style.filter='none';showUI(i);},110);
 }
 window.addEventListener('wheel',function(e){
-  if(!done||viewOpen||cartOpen)return;e.preventDefault();
+  if(!done||viewOpen||cartOpen||ckOpen)return;e.preventDefault();
   var now=performance.now();if(now-accT>200)acc=0;accT=now;
   acc+=e.deltaY;
   if(Math.abs(acc)>=30){var d=acc>0?1:-1;acc=0;nav(d);}
@@ -756,12 +884,12 @@ window.addEventListener('wheel',function(e){
 var ty0=null;
 window.addEventListener('touchstart',function(e){ty0=e.touches[0].clientY;},{passive:true});
 window.addEventListener('touchmove',function(e){
-  if(!done||viewOpen||cartOpen)return;e.preventDefault();
+  if(!done||viewOpen||cartOpen||ckOpen)return;e.preventDefault();
   if(ty0===null)return;var dy=ty0-e.touches[0].clientY;
   if(Math.abs(dy)>40){ty0=e.touches[0].clientY;nav(dy>0?1:-1);}
 },{passive:false});
 window.addEventListener('keydown',function(e){
-  if(!done||viewOpen||cartOpen)return;var k=e.key;
+  if(!done||viewOpen||cartOpen||ckOpen)return;var k=e.key;
   if(k==='ArrowDown'||k==='PageDown'||k===' '){e.preventDefault();nav(1);}
   else if(k==='ArrowUp'||k==='PageUp'){e.preventDefault();nav(-1);}
   else if(k==='Home'){e.preventDefault();goCat(0);}
@@ -807,7 +935,7 @@ function closeView(){viewOpen=false;cv2.hidden=true;if(lastFocus&&lastFocus.focu
 $('brands').addEventListener('click',function(e){var b=e.target.closest('.brand');if(!b)return;var v=b.getAttribute('data-b');curBrand=(curBrand===v)?'':v;renderCat();});
 $('cvback').addEventListener('click',closeView);
 $('cvlogo').addEventListener('click',function(e){e.preventDefault();closeView();});
-window.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(cartOpen){closeCart();}else if(pdOpen){closeProduct();}else if(viewOpen){closeView();}});
+window.addEventListener('keydown',function(e){if(e.key!=='Escape')return;if(ckOpen){closeCk(!$('ckform').hidden);}else if(cartOpen){closeCart();}else if(pdOpen){closeProduct();}else if(viewOpen){closeView();}});
 Array.prototype.forEach.call(document.querySelectorAll('#cats .ver'),function(a){a.addEventListener('click',function(e){e.preventDefault();openView(+a.getAttribute('data-v'));});});
 
 
@@ -953,6 +1081,54 @@ $('qplus').addEventListener('click',function(){setQ(+$('qval').value+1);});
 $('qval').addEventListener('change',function(){setQ(this.value);});
 $('pdadd').addEventListener('click',function(){if(curProd)addToCart(curProd.c,+$('qval').value||1);});
 updBadges(false);
+
+
+/* Checkout (vista previa, sin pasarela conectada) */
+var ck=$('ck'),ckOpen=false,ckf=$('ckf');
+var PAYNOTE={tarjeta:'Al tocar Pagar se abrirá la ventana segura de la pasarela de pagos para completar el pago con tarjeta.',pse:'Al tocar Pagar te llevaremos a PSE para elegir tu banco y aprobar el débito.',nequi:'Al tocar Pagar recibirás una notificación en tu app Nequi para aprobar el pago.',contraentrega:'Pagas al recibir el pedido, en efectivo o por transferencia. Te confirmaremos por WhatsApp.'};
+function ckLines(){return CART.map(function(it){var p=prodBy(it.c);return '<div class="ckl"><span>'+it.n+' × '+esc(p.n)+'</span><b>'+cop(p.p*it.n)+'</b></div>';}).join('');}
+function ckUpd(){
+  var ent=ckf.entrega.value,pg=ckf.pago.value;
+  $('dir').hidden=ent!=='domicilio';
+  $('ckenv').textContent=ent==='domicilio'?'Por confirmar':'Gratis';
+  $('cktot').textContent=cop(cartTotal())+(ent==='domicilio'?' + envío':'');
+  $('paynote').textContent=PAYNOTE[pg];
+  $('ckpay').textContent=pg==='contraentrega'?'Confirmar pedido':'Pagar '+cop(cartTotal());
+}
+function openCk(){
+  if(!CART.length)return;
+  closeCart();
+  $('cklines').innerHTML=ckLines();$('cksub').textContent=cop(cartTotal());
+  $('ckform').hidden=false;$('ckdone').hidden=true;$('st2').className='on';$('st3').className='';$('ckerr').hidden=true;
+  ckUpd();ckOpen=true;ck.hidden=false;ck.scrollTop=0;$('ckback').focus({preventScroll:true});
+}
+function closeCk(back){ckOpen=false;ck.hidden=true;if(back)openCart();}
+ckf.addEventListener('change',ckUpd);
+function clrBad(e){e.target.classList.remove('bad');if(!ckf.querySelector('.bad'))$('ckerr').hidden=true;}
+ckf.addEventListener('input',clrBad);ckf.addEventListener('change',clrBad);
+ckf.addEventListener('submit',function(e){
+  e.preventDefault();
+  var bad=[],dom=ckf.entrega.value==='domicilio';
+  Array.prototype.forEach.call(ckf.querySelectorAll('[required]'),function(el){
+    if(!dom&&el.closest('#dir'))return;
+    var ok=el.type==='checkbox'?el.checked:String(el.value).trim()!=='';
+    if(ok&&el.type==='email')ok=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value.trim());
+    if(ok&&el.name==='tel')ok=el.value.replace(/\D/g,'').length>=10;
+    el.classList.toggle('bad',!ok);if(!ok)bad.push(el);
+  });
+  var er=$('ckerr');
+  if(bad.length){er.textContent='Revisa los campos marcados.';er.hidden=false;bad[0].focus();return;}
+  er.hidden=true;
+  var n='SV-'+String(Date.now()).slice(-6),pg=ckf.pago.value,nombre=ckf.nombre.value.trim().split(' ')[0];
+  $('ordn').textContent=n;
+  $('okmsg').textContent='Gracias, '+nombre+'. '+(pg==='contraentrega'?'Te escribiremos por WhatsApp para confirmar la entrega y el valor del envío.':'Te enviaremos la confirmación del pago y el seguimiento del envío a '+ckf.email.value.trim()+'.');
+  $('oklines').innerHTML=ckLines();$('oktot').textContent=cop(cartTotal());
+  $('ckform').hidden=true;$('ckdone').hidden=false;$('st2').className='done';$('st3').className='on';ck.scrollTop=0;
+});
+$('okhome').addEventListener('click',function(){CART=[];saveCart();updBadges(false);renderCart();ckf.reset();closeCk(false);closeProduct();closeView();});
+$('ckback').addEventListener('click',function(){closeCk(!$('ckform').hidden);});
+$('ckwa').addEventListener('click',function(e){e.preventDefault();if(WHATSAPP)window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(cartMsg()),'_blank','noopener');else toast('Falta configurar el número de WhatsApp de Servitecnicos');});
+$('cpay').addEventListener('click',openCk);
 
 function finish(){
   done=true;running=false;p=tp=1;render();H=window.innerHeight;W=window.innerWidth;intro.style.display='none';updCats();
