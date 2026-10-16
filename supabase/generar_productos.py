@@ -58,10 +58,10 @@ P = [
  ('TI-HP-GT5152-KIT','Kit de tintas compatibles HP GT-51 / GT-52 (negro, cian, amarillo y magenta)',I,'HP','Kit de colores compatible',58000,'4 botellas de 100 ml · N, C, A, M',HPGT,D_KIT),
 ]
 import os
-NFOT = {c: len([f for f in os.listdir('/home/claude/servitecnicosclaude/media/productos') if f.startswith(c + '-') and f[len(c)+1:-4].isdigit()]) for c, *_ in P}
+NFOT = {c: len([f for f in os.listdir('/home/claude/servitecnicosclaude/media/fotos') if f.startswith(c + '-') and f[len(c)+1:-4].isdigit()]) for c, *_ in P}
 COLID = {'Tóners': 'toners', 'Tintas': 'tintas', 'Repuestos': 'repuestos', 'Impresoras': 'impresoras'}
 
-def fotos(c): return ['media/productos/%s-%d.jpg' % (c, k) for k in range(1, NFOT[c] + 1)]
+def fotos(c): return ['media/fotos/%s-%d.jpg' % (c, k) for k in range(1, NFOT[c] + 1)]
 
 def js():
     return [dict(c=c, n=n, col=col, b=b, t=t, p=p, q=None, s=s, cp=cp, d=d, f=fotos(c)) for c, n, col, b, t, p, s, cp, d in P]
