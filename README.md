@@ -8,7 +8,7 @@ Tienda web de Servitécnicos SYM: tóners, tintas y suministros para impresoras,
 
 ## Publicación
 
-Se publica en **Cloudflare Workers** (plan gratis). Cloudflare está conectado a este repositorio: cada cambio en la rama `main` se publica solo.
+Se publica en **Cloudflare Workers** (plan gratis). Cloudflare está conectado a este repositorio desde el 6 de noviembre de 2026: cada cambio en la rama `main` se publica solo en el Worker `floral-mouse-ac26`.
 
 - `wrangler.jsonc` le dice a Cloudflare que publique esta carpeta como sitio estático.
 - `.assetsignore` deja por fuera lo que no es de la tienda (README, supabase, configuración).
