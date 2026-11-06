@@ -1,0 +1,7 @@
+# Archivos del repositorio que NO se publican en la tienda
+.git
+.github
+.assetsignore
+wrangler.jsonc
+README.md
+supabase
