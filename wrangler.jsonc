@@ -1,0 +1,9 @@
+// Publicación en Cloudflare Workers (archivos estáticos, plan gratis).
+// "name" debe ser igual al nombre del Worker en Cloudflare.
+{
+  "name": "floral-mouse-ac26",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "."
+  }
+}
