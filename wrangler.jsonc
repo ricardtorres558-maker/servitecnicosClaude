@@ -1,9 +1,10 @@
 // Publicación en Cloudflare Workers (archivos estáticos, plan gratis).
 // "name" debe ser igual al nombre del Worker en Cloudflare.
+// Solo se publica la carpeta public/ (la tienda); el resto del repositorio no.
 {
   "name": "floral-mouse-ac26",
   "compatibility_date": "2026-11-01",
   "assets": {
-    "directory": "."
+    "directory": "./public"
   }
 }
