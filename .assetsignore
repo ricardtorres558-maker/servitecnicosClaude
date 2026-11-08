@@ -1,6 +1,7 @@
 # Archivos del repositorio que NO se publican en la tienda
 .git
 .github
+worker
 .assetsignore
 wrangler.jsonc
 README.md

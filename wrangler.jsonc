@@ -1,9 +1,13 @@
-// Publicación en Cloudflare Workers (archivos estáticos, plan gratis).
+// Publicación en Cloudflare Workers (plan gratis).
 // "name" debe ser igual al nombre del Worker en Cloudflare.
+// Los archivos de la tienda se sirven tal cual; worker/index.js solo atiende /api/ (pagos con Wompi).
 {
   "name": "floral-mouse-ac26",
   "compatibility_date": "2026-11-01",
+  "main": "worker/index.js",
   "assets": {
-    "directory": "."
-  }
+    "directory": ".",
+    "binding": "ASSETS"
+  },
+  "observability": { "enabled": true }
 }
