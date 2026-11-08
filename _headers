@@ -1,0 +1,5 @@
+# Velocidad: el navegador guarda fotos y videos 1 día (y los sigue usando
+# mientras revisa si hay cambios, hasta 7 días). La página (index.html)
+# no se guarda, así que los cambios de la tienda se ven de inmediato.
+/media/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

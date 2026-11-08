@@ -3,7 +3,8 @@
 Tienda web de Servitécnicos SYM: tóners, tintas y suministros para impresoras, con envíos en Bogotá.
 
 - `index.html`: la página completa (intro con el logo, categorías en video, catálogo, Nosotros, Contáctanos, carrito y checkout).
-- `media/`: videos, fondos, fotos de productos y logos de marcas.
+- `media/`: videos, fondos, fotos de productos y logos de marcas. `media/fotos/min/` tiene las fotos livianas (480 px) que usan las tarjetas del catálogo; se crean con `python3 herramientas/miniaturas.py` cada vez que se agrega una foto.
+- `_headers`: le dice al navegador que guarde fotos y videos para que la tienda abra más rápido en la segunda visita.
 - `supabase/`: estructura y datos de la base de datos (no se publica).
 
 ## Publicación
